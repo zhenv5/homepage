@@ -22,7 +22,7 @@ Works categorized by year:
 
 * WebSci'2017
 * Internship work with [Deepak Ajwani](https://www.bell-labs.com/usr/deepak.ajwani), [Patrick Nicholson](https://www.bell-labs.com/usr/pat.nicholson), and [Alessandra Sala](https://www.bell-labs.com/usr/alessandra.sala)  @Bell Labs, Nokia, Ireland, May - Aug, 2016
-*  [Slides Download](https://github.com/zhenv5/long_short_term_memory/blob/master/Homepage/Slides/Slides_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf)
+*  [Slides Download](https://github.com/zhenv5/homepage/blob/master/documents/Slides_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf)
 * [Breaking cycles in noisy hierarchies](https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies/blob/master/paper/Paper_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf) [Paper Download](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/WebSci_17_Remove_Cycle_Edges.pdf)
 * Code is available on [Github](https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies.git)
 * [BibTex Download] available soon
