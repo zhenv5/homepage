@@ -26,8 +26,8 @@ Works categorized by year:
 *  [Slides Download](https://github.com/zhenv5/homepage/blob/master/documents/Slides_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf)
 * [Breaking cycles in noisy hierarchies](https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies/blob/master/paper/Paper_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf) [Paper Download](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/WebSci_17_Remove_Cycle_Edges.pdf)
 * Code is available on [Github](https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies.git)
-* [BibTex Download](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/Websci_17_Breaking_Cycles_in_Noisy_Hierarchies.bib)
-* [ACM Link] available soon
+* [BibTex Download](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/Bib_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.bib)
+* [ACM Link](http://dl.acm.org/citation.cfm?id=3091495)
 * Acceptance Rate: $30/127 = 23.6\%$
 * [Back To Top](#home)
 
