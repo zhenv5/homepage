@@ -2,16 +2,35 @@
 
 
 * Homepage: [Jiankai Sun](http://web.cse.ohio-state.edu/~sun.1306/)
-* Last Updated Date: 2017.05.05
+* Last Updated Date: 2018.03.25
 
 <span id="home"></span>
 Works categorized by year: 
 
 * [View All Paper](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/)
+* [2018](#2018)
 *  [2017](#2017)
 *  [Visualization of Work before 2016](#visualization2016)
 *  [2014](#2014)
 *  [2012](#2012)
+
+
+### 2018
+
+#### SEANO: Semi-supervised Embedding in Attributed Networks with Outliers [6]
+
+> In this paper, we propose a novel framework, called Semi-supervised Embedding in Attributed Networks with Outliers (SEANO), to learn a low-dimensional vector
+representation that systematically captures the topological proximity, attribute affinity and label similarity of vertices in a partially labeled attributed network
+(PLAN). Our method is designed to work in both transductive and inductive settings while explicitly alleviating noise effects from outliers. Experimental results on
+various datasets drawn from the web, text and image domains demonstrate the advantages of SEANO over the state-of-the-art methods in semi-supervised classification
+under transductive as well as inductive settings. We also show that a subset of parameters in SEANO are interpretable as outlier scores and can significantly outperform
+baseline methods when applied for detecting network outliers. Finally, we present the use of SEANO in a challenging real-world setting – flood mapping of
+satellite images and show that it is able to outperform modern remote sensing algorithms for this task.
+
+
+* SDM'2018
+* [Project Homepage (Code and Dataset)](http://jiongqianliang.com/SEANO/)
+* [PDF Download](https://arxiv.org/pdf/1703.08100.pdf) [bib](http://jiongqianliang.com/publications/SDM18.txt)
 
 ### 2017
 
