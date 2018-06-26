@@ -23,6 +23,7 @@ Works categorized by year:
 
 * The 12th International AAAI Conference on Web and Social Media (ICWSM 2018)
 * [arXiv](https://arxiv.org/abs/1804.00109)
+* [Slide]()
 * [Code](https://github.com/zhenv5/QDEE)
 * Acceptance Rate: $48/295 = 16\%$
 * [Back To Top](#home)
