@@ -17,6 +17,17 @@ Works categorized by year:
 
 ### 2018
 
+
+#### ColdRoute: effective routing of cold questions in stack exchange sites [8]
+
+> Routing questions in Community Question Answer services such as Stack Exchange sites is a well-studied problem. Yet, cold-start—a phenomena observed when a new question is posted is not well addressed by existing approaches. Additionally, cold questions posted by new askers present significant challenges to state-of-the-art approaches. We propose ColdRoute to address these challenges. ColdRoute is able to handle the task of routing cold questions posted by new or existing askers to matching experts. Specifically, we use Factorization Machines on the one-hot encoding of critical features such as question tags and compare our approach to well-studied techniques such as CQARank and semantic matching (LDA, BoW, and Doc2Vec). Using data from eight stack exchange sites, we are able to improve upon the routing metrics (Precision@1, Accuracy, MRR) over the state-of-the-art models such as semantic matching by 159.5%, 31.84%, and 40.36% for cold questions posted by existing askers, and 123.1%, 27.03%, and 34.81% for cold questions posted by new askers respectively.
+
+* Journal Track of European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD) 2018
+* [arXiv](https://arxiv.org/abs/1807.00462)
+* [Slide]()
+* [Code](https://github.com/zhenv5/ColdRoute)
+* [Back To Top](#home)
+
 #### QDEE: Question Difficulty and Expertise Estimation in Community Question Answering Sites [7]
 
 > In this paper, we present a framework for Question Difficulty and Expertise Estimation (QDEE) in Community Question Answering sites (CQAs) such as Yahoo! Answers and Stack Overflow, which tackles a fundamental challenge in crowdsourcing: how to appropriately route and assign questions to users with the suitable expertise. This problem domain has been the subject of much research and includes both language-agnostic as well as language conscious solutions. We bring to bear a key language-agnostic insight: that users gain expertise and therefore tend to ask as well as answer more difficult questions over time. We use this insight within the popular competition (directed) graph model to estimate question difficulty and user expertise by identifying key hierarchical structure within said model. An important and novel contribution here is the application of "social agony" to this problem domain. Difficulty levels of newly posted questions (the cold-start problem) are estimated by using our QDEE framework and additional textual features. We also propose a model to route newly posted questions to appropriate users based on the difficulty level of the question and the expertise of the user. Extensive experiments on real world CQAs such as Yahoo! Answers and Stack Overflow data demonstrate the improved efficacy of our approach over contemporary state-of-the-art models. The QDEE framework also allows us to characterize user expertise in novel ways by identifying interesting patterns and roles played by different users in such CQAs.
