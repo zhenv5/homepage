@@ -25,7 +25,7 @@ Works categorized by year:
 * Journal Track of European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD) 2018
 * [Springer](https://link.springer.com/article/10.1007%2Fs10618-018-0577-7)
 * [arXiv](https://arxiv.org/abs/1807.00462)
-* [Slide](https://www.dropbox.com/s/upqynsfc4ivpzjc/Slides_ECMLPKDD_2018_ColdRoute.pdf?dl=0)
+* [Slides for ECML PKDD 2018 Presentation](https://www.dropbox.com/s/upqynsfc4ivpzjc/Slides_ECMLPKDD_2018_ColdRoute.pdf?dl=0)
 * [Download Bib](https://citation-needed.springer.com/v2/references/10.1007/s10618-018-0577-7?format=bibtex&flavour=citation)
 * [Code](https://github.com/zhenv5/ColdRoute)
 * [Back To Top](#home)
