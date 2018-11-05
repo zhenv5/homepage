@@ -8,6 +8,7 @@
 Works categorized by year: 
 
 * [View All Paper](http://web.cse.ohio-state.edu/~sun.1306/Published_Works/)
+* [2019](#2019)
 * [2018](#2018)
 *  [2017](#2017)
 *  [Visualization of Work before 2016](#visualization2016)
