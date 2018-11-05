@@ -14,6 +14,17 @@ Works categorized by year:
 *  [2014](#2014)
 *  [2012](#2012)
 
+### 2019
+
+#### ATP: Directed Graph Embedding with Asymmetric Transitivity Preservation
+
+> Directed graphs have been widely used in Community Question Answering services (CQAs) to model asymmetric relationships among different types of nodes in CQA graphs, e.g., question, answer, user. Asymmetric transitivity is an essential property of directed graphs, since it can play an important role in downstream graph inference and analysis. Question difficulty and user expertise follow the characteristic of asymmetric transitivity. Maintaining such properties, while reducing the graph to a lower dimensional vector embedding space, has been the focus of much recent research. In this paper, we tackle the challenge of directed graph embedding with asymmetric transitivity preservation and then leverage the proposed embedding method to solve a fundamental task in CQAs: how to appropriately route and assign newly posted questions to users with the suitable expertise and interest in CQAs. The technique incorporates graph hierarchy and reachability information naturally by relying on a non-linear transformation that operates on the core reachability and implicit hierarchy within such graphs. Subsequently, the methodology levers a factorization-based approach to generate two embedding vectors for each node within the graph, to capture the asymmetric transitivity. Extensive experiments show that our framework consistently and significantly outperforms the state-of-the-art baselines on two diverse real-world tasks: link prediction, and question difficulty estimation and expert finding in online forums like Stack Exchange. Particularly, our framework can support inductive embedding learning for newly posted questions (unseen nodes during training), and therefore can properly route and assign these kinds of questions to experts in CQAs.
+* The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI 2019), acceptance rate: 1150/7095 = 16.2%
+* [arXiv](https://arxiv.org/abs/1811.00839)
+* [Slides for AAAI 2019 Presentation]()
+* [Download Bib]()
+* [Code]()
+* [Back To Top](#home)
 
 ### 2018
 
