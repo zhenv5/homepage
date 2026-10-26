@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Label Leakage and Protection in Two-party Split Learning",
+    "authors": "O Li, J Sun, W Gao, H Zhang, X Yang, J Xie, C Wang",
+    "venue": "ICLR 2022, 2020",
+    "cites": 250,
+    "year": "2020",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:1sJd4Hv_s6UC"
+  },
+  {
+    "title": "Dgrec: Graph neural network for recommendation with diversified embedding generation",
+    "authors": "L Yang, S Wang, Y Tao, J Sun, X Liu, PS Yu, T Wang",
+    "venue": "Proceedings of the sixteenth ACM international conference on web search and …, 2023",
+    "cites": 217,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:738O_yMBCRsC"
+  },
+  {
+    "title": "Learning to recommend accurate and diverse items",
+    "authors": "P Cheng, S Wang, J Ma, J Sun, H Xiong",
+    "venue": "Proceedings of the 26th international conference on World Wide Web, 183-192, 2017",
+    "cites": 181,
+    "year": "2017",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:fPk4N6BV_jEC"
+  },
+  {
+    "title": "Semi-supervised embedding in attributed networks with outliers",
+    "authors": "J Liang, P Jacobs, J Sun, S Parthasarathy",
+    "venue": "Proceedings of the 2018 SIAM international conference on data mining, 153-161, 2018",
+    "cites": 140,
+    "year": "2018",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:EUQCXRtRnyEC"
+  },
+  {
+    "title": "Learning an end-to-end structure for retrieval in large-scale recommendations",
+    "authors": "W Gao, X Fan, C Wang, J Sun, K Jia, W Xiao, R Ding, X Bin, H Yang, X Liu",
+    "venue": "Proceedings of the 30th ACM international conference on information …, 2021",
+    "cites": 75,
+    "year": "2021",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:dshw04ExmUIC"
+  },
+  {
+    "title": "ATP: Directed Graph Embedding with Asymmetric Transitivity Preservation",
+    "authors": "J Sun, B Bandyopadhyay, A Bashizade, J Liang, P Sadayappan, ...",
+    "venue": "The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI 2019), 2018",
+    "cites": 69,
+    "year": "2018",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:f2IySw72cVMC"
+  },
+  {
+    "title": "Vsrank: A novel framework for ranking-based collaborative filtering",
+    "authors": "S Wang, J Sun, BJ Gao, J Ma",
+    "venue": "ACM Transactions on Intelligent Systems and Technology (TIST) 5 (3), 1-24, 2014",
+    "cites": 66,
+    "year": "2014",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:d1gkVwhDpl0C"
+  },
+  {
+    "title": "Breaking cycles in noisy hierarchies",
+    "authors": "J Sun, D Ajwani, PK Nicholson, A Sala, S Parthasarathy",
+    "venue": "Proceedings of the 2017 ACM on web science conference, 151-160, 2017",
+    "cites": 64,
+    "year": "2017",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:4OULZ7Gr8RgC"
+  },
+  {
+    "title": "Differentially private label protection in split learning",
+    "authors": "X Yang, J Sun, Y Yao, J Xie, C Wang",
+    "venue": "arXiv preprint arXiv:2203.02073, 2022",
+    "cites": 62,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:uWQEDVKXjbEC"
+  },
+  {
+    "title": "Label leakage and protection from forward embedding in vertical federated learning",
+    "authors": "J Sun, X Yang, Y Yao, C Wang",
+    "venue": "arXiv preprint arXiv:2203.01451, 2022",
+    "cites": 62,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:SP6oXDckpogC"
+  },
+  {
+    "title": "Vertical federated learning without revealing intersection membership",
+    "authors": "J Sun, X Yang, Y Yao, A Zhang, W Gao, J Xie, C Wang",
+    "venue": "arXiv preprint arXiv:2106.05508, 2021",
+    "cites": 52,
+    "year": "2021",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:P5F9QuxV20EC"
+  },
+  {
+    "title": "Weak proxies are sufficient and preferable for fairness with missing sensitive attributes",
+    "authors": "Z Zhu, Y Yao, J Sun, H Li, Y Liu",
+    "venue": "International Conference on Machine Learning, 43258-43288, 2023",
+    "cites": 44,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:geHnlv5EZngC"
+  },
+  {
+    "title": "Leveraging print debugging to improve code generation in large language models",
+    "authors": "X Hu, K Kuang, J Sun, H Yang, F Wu",
+    "venue": "arXiv preprint arXiv:2401.05319, 2024",
+    "cites": 40,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:LPZeul_q3PIC"
+  },
+  {
+    "title": "Defending against Reconstruction Attack in Vertical Federated Learning",
+    "authors": "J Sun, Y Yao, W Gao, J Xie, C Wang",
+    "venue": "FL-ICML 2021, 2021",
+    "cites": 40,
+    "year": "2021",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:KxtntwgDAa4C"
+  },
+  {
+    "title": "Learning to rank for hybrid recommendation",
+    "authors": "J Sun, S Wang, BJ Gao, J Ma",
+    "venue": "Proceedings of the 21st ACM international conference on Information and …, 2012",
+    "cites": 36,
+    "year": "2012",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:u-x6o8ySG0sC"
+  },
+  {
+    "title": "QDEE: Question Difficulty and Expertise Estimation in Community Question Answering Sites",
+    "authors": "J Sun, S Moosavi, R Ramnath, S Parthasarathy",
+    "venue": "The International AAAI Conference on Web and Social Media (ICWSM 2018), 2018",
+    "cites": 35,
+    "year": "2018",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:a0OBvERweLwC"
+  },
+  {
+    "title": "Adapting vector space model to ranking-based collaborative filtering",
+    "authors": "S Wang, J Sun, BJ Gao, J Ma",
+    "venue": "Proceedings of the 21st ACM international conference on Information and …, 2012",
+    "cites": 34,
+    "year": "2012",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:u5HHmVD_uO8C"
+  },
+  {
+    "title": "EndCold: An End-to-End Framework for Cold Question Routing in Community Question Answering Services",
+    "authors": "J Sun, J Zhao, H Sun, S Parthasarathy",
+    "venue": "The Twenty-Ninth International Joint Conferences on Artificial Intelligence …, 2020",
+    "cites": 28,
+    "year": "2020",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:xtRiw3GOFMkC"
+  },
+  {
+    "title": "Netflix and forget: Efficient and exact machine unlearning from bi-linear recommendations",
+    "authors": "M Xu, J Sun, X Yang, K Yao, C Wang",
+    "venue": "arXiv preprint arXiv:2302.06676, 2023",
+    "cites": 26,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:08ZZubdj9fEC"
+  },
+  {
+    "title": "ColdRoute: effective routing of cold questions in stack exchange sites: J. Sun et al.",
+    "authors": "J Sun, A Vishnu, A Chakrabarti, C Siegel, S Parthasarathy",
+    "venue": "Data mining and knowledge discovery 32 (5), 1339-1367, 2018",
+    "cites": 26,
+    "year": "2018",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:pyW8ca7W8N0C"
+  },
+  {
+    "title": "Label inference attack against split learning under regression setting",
+    "authors": "S Xie, X Yang, Y Yao, T Liu, T Wang, J Sun",
+    "venue": "arXiv preprint arXiv:2301.07284, 2023",
+    "cites": 20,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:tOudhMTPpwUC"
+  },
+  {
+    "title": "DPAUC: Differentially Private AUC Computation in Federated Learning",
+    "authors": "J Sun, X Yang, Y Yao, J Xie, D Wu, C Wang",
+    "venue": "The Thirty-Seventh AAAI Conference on Artificial Intelligence (AAAI 2023 …, 2022",
+    "cites": 14,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:XiSMed-E-HIC"
+  },
+  {
+    "title": "PSLF: defending against label leakage in split learning",
+    "authors": "X Wan, J Sun, S Wang, L Chen, Z Zheng, F Wu, G Chen",
+    "venue": "Proceedings of the 32nd ACM International Conference on Information and …, 2023",
+    "cites": 13,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:8AbLer7MMksC"
+  },
+  {
+    "title": "Differentially private AUC computation in vertical federated learning",
+    "authors": "J Sun, X Yang, Y Yao, J Xie, D Wu, C Wang",
+    "venue": "arXiv preprint arXiv:2205.12412, 2022",
+    "cites": 8,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:p2g8aNsByqUC"
+  },
+  {
+    "title": "Privacy Preserving Conversion Modeling in Data Clean Room",
+    "authors": "K Li, X Chen, L Leng, J Xu, J Sun, B Rezaei",
+    "venue": "Proceedings of the 18th ACM Conference on Recommender Systems, 819-822, 2024",
+    "cites": 7,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:kRWSkSYxWN8C"
+  },
+  {
+    "title": "Graph-based model-agnostic data subsampling for recommendation systems",
+    "authors": "X Chen, J Sun, T Wang, R Guo, LP Liu, A Zhang",
+    "venue": "Proceedings of the 29th ACM SIGKDD conference on knowledge discovery and …, 2023",
+    "cites": 7,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:B3FOqHPlNUQC"
+  },
+  {
+    "title": "Differentially private multi-party data release for linear regression",
+    "authors": "R Wu, X Yang, Y Yao, J Sun, T Liu, KQ Weinberger, C Wang",
+    "venue": "arXiv preprint arXiv:2206.07998, 2022",
+    "cites": 4,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:OU6Ihb5iCvQC"
+  },
+  {
+    "title": "Netflix and Forget: Fast Severance From Memorizing Training Data in Recommendations",
+    "authors": "M Xu, J Sun, X Yang, Y Yao, C Wang",
+    "venue": "NeurIPS ML Safety Workshop, 2022",
+    "cites": 3,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:l7t_Zn2s7bgC"
+  },
+  {
+    "title": "Symmetrization for Embedding Directed Graphs",
+    "authors": "J Sun, S Parthasarathy",
+    "venue": "The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI 2019), 2018",
+    "cites": 3,
+    "year": "2018",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:bFI3QPDXJZMC"
+  },
+  {
+    "title": "Unlearning of recommendation models",
+    "authors": "SUN Jiankai, X Xu, X Yang, Y Yao, C Wang",
+    "venue": "US Patent 12,670,435, 2026",
+    "cites": 2,
+    "year": "2026",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:fQNAKQ3IYiAC"
+  },
+  {
+    "title": "Decoupled Entity Representation Learning for Pinterest Ads Ranking",
+    "authors": "J Liu, Y Li, J Sun, K Li, H Sun, S Wang, H Wu, S Gao, P Soares, N Li, Z Liu, ...",
+    "venue": "Proceedings of the Nineteenth ACM Conference on Recommender Systems, 940-944, 2025",
+    "cites": 2,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:wbdj-CoPYUoC"
+  },
+  {
+    "title": "Data subsampling for recommendation systems",
+    "authors": "A Zhang, SUN Jiankai, R Guo, W Taiqing, X Chen",
+    "venue": "US Patent 12,651,208, 2026",
+    "cites": 1,
+    "year": "2026",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:vRqMK49ujn8C"
+  },
+  {
+    "title": "Data protection method, apparatus, medium and electronic device",
+    "authors": "SUN Jiankai, X Yang, A Zhang, GAO Weihao, J Xie, C Wang",
+    "venue": "US Patent 12,455,972, 2025",
+    "cites": 1,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:D_sINldO8mEC"
+  },
+  {
+    "title": "Methods, apparatuses, devices and medium for model performance evaluation",
+    "authors": "SUN Jiankai, X Yang, C Wang, J Xie, D Wu",
+    "venue": "US Patent App. 18/865,581, 2025",
+    "cites": 1,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:5ugPr518TE4C"
+  },
+  {
+    "title": "Data processing for release while protecting individual privacy",
+    "authors": "X Yang, Y Yao, T Liu, J SUN, C Wang, R Wu",
+    "venue": "US Patent 12,423,463, 2025",
+    "cites": 1,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:sSrBHYA8nusC"
+  },
+  {
+    "title": "Data protection method, training method and apparatus for network structure, medium, and device",
+    "authors": "SUN Jiankai, GAO Weihao",
+    "venue": "US Patent App. 18/565,015, 2024",
+    "cites": 1,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:eflP2zaiRacC"
+  },
+  {
+    "title": "Method, apparatus, device and medium for protecting sensitive data",
+    "authors": "X Yang, J Xie, Y Yao, C Wang",
+    "venue": "US Patent App. 18/539,851, 2024",
+    "cites": 1,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:eJXPG6dFmWUC"
+  },
+  {
+    "title": "Data protection method, apparatus, medium and device",
+    "authors": "SUN Jiankai, GAO Weihao, LIU Xiaobing, LI Runliang",
+    "venue": "US Patent App. 18/252,559, 2024",
+    "cites": 1,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:5Ul4iDaHHb8C"
+  },
+  {
+    "title": "Method and apparatus for training item coding model",
+    "authors": "GAO Weihao, FAN Xiangjun, SUN Jiankai, LIU Xiaobing",
+    "venue": "US Patent 11,763,204, 2023",
+    "cites": 1,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:WbkHhVStYXYC"
+  },
+  {
+    "title": "Evaluating fairness without sensitive attributes: A framework using only auxiliary models",
+    "authors": "Z Zhu, Y Yao, J Sun, Y Liu, H Li",
+    "venue": "",
+    "cites": 1,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:Tiz5es2fbqcC"
+  },
+  {
+    "title": "Method and apparatus for protecting data, and device and medium",
+    "authors": "SUN Jiankai, X Yang, Y Yao, J Xie, C Wang",
+    "venue": "US Patent 12,688,322, 2026",
+    "cites": 0,
+    "year": "2026",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:1qzjygNMrQYC"
+  },
+  {
+    "title": "Methods, apparatuses, devices and medium for model performance evaluation",
+    "authors": "SUN Jiankai, X Yang, C Wang, J Xie, D Wu",
+    "venue": "US Patent App. 18/865,611, 2025",
+    "cites": 0,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:bnK-pcrLprsC"
+  },
+  {
+    "title": "Model performance evaluating methods, apparatuses, device and storage medium",
+    "authors": "SUN Jiankai, X Yang, C Wang, J Xie, D Wu",
+    "venue": "US Patent App. 18/839,702, 2025",
+    "cites": 0,
+    "year": "2025",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:J-pR_7NvFogC"
+  },
+  {
+    "title": "Method, apparatus, device, and medium for action execution",
+    "authors": "XU Anran, S Wang, L Chen, S Li, SUN Jiankai, Z ZHENG, F Wu",
+    "venue": "US Patent App. 18/623,714, 2024",
+    "cites": 0,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:mvPsJ3kp5DgC"
+  },
+  {
+    "title": "Method and apparatus for data protection, readable medium and electronic device",
+    "authors": "X Yang, SUN Jiankai, GAO Weihao, J Xie, C Wang",
+    "venue": "US Patent App. 18/565,000, 2024",
+    "cites": 0,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:BrmTIyaxlBUC"
+  },
+  {
+    "title": "Determining online classifier performance via normalizing flows",
+    "authors": "X Yang, ZHU Hanlin, T Liu, SUN Jiankai, Y Yao, A Zhang, C Wang",
+    "venue": "US Patent App. 17/953,255, 2024",
+    "cites": 0,
+    "year": "2024",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:VOx2b1Wkg3QC"
+  },
+  {
+    "title": "Label inference in split learning defenses",
+    "authors": "XIE Shangyu, SUN Jiankai, W Taiqing",
+    "venue": "US Patent App. 18/149,462, 2023",
+    "cites": 0,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:4fKUyHm3Qg0C"
+  },
+  {
+    "title": "Diversifying recommendations by improving embedding generation of a graph neural network model",
+    "authors": "Y Liangwei, S Wang, Y Tao, SUN Jiankai, W Taiqing",
+    "venue": "US Patent App. 17/985,788, 2023",
+    "cites": 0,
+    "year": "2023",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:tS2w5q8j5-wC"
+  },
+  {
+    "title": "Data protection method and apparatus, and server and medium",
+    "authors": "SUN Jiankai, GAO Weihao, LIU Xiaobing",
+    "venue": "US Patent App. 17/816,250, 2022",
+    "cites": 0,
+    "year": "2022",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:K3LRdlH-MEoC"
+  },
+  {
+    "title": "Directed Graph Analysis: Algorithms and Applications",
+    "authors": "J Sun",
+    "venue": "The Ohio State University, 2019",
+    "cites": 0,
+    "year": "2019",
+    "scholar_link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:abG-DnoFyZgC"
+  }
+]

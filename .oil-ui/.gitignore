@@ -1,0 +1,5 @@
+*.html
+shots/
+review_current/
+homepage_redesign/
+__pycache__/
