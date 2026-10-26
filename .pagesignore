@@ -1,0 +1,6 @@
+.git
+.oil-ui
+.DS_Store
+*.py
+*.pyc
+__pycache__
