@@ -379,6 +379,10 @@ full_html = f"""<!DOCTYPE html>
     gtag('config', 'G-Y64RCNPS3S');
   </script>
 
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "89b3581f8f6643fca01d90ace429ef61"}}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
   <style>
     *, *::before, *::after {{
       box-sizing: border-box;
