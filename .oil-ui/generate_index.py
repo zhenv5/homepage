@@ -86,7 +86,7 @@ def generate_overall_heatmap(svg_path="/Users/jiankai/Library/CloudStorage/Dropb
         f'<text x="0" y="{top_margin + 5 * (cell_size + cell_gap) + 8}" font-size="9" fill="#767676" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Fri</text>'
     ]
 
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="100%" height="auto">
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="100%">
   <style>
     .day {{ shape-rendering: geometricPrecision; outline: none; }}
     .day:hover {{ stroke: #0369a1; stroke-width: 1.5; }}
@@ -101,9 +101,9 @@ def generate_overall_heatmap(svg_path="/Users/jiankai/Library/CloudStorage/Dropb
     with open(svg_path, 'w', encoding='utf-8') as f:
         f.write(svg)
 
-    return total_commits
+    return total_commits, svg
 
-overall_commit_count = generate_overall_heatmap()
+overall_commit_count, heatmap_svg = generate_overall_heatmap()
 print(f"Generated overall activity heatmap with {overall_commit_count} commits (including private repos).")
 
 def categorize(p):
@@ -341,11 +341,14 @@ for idx, p in enumerate(papers):
         kw_chips.append(f'<button type="button" class="paper-kw mono" onclick="filterByTag(\'{html.escape(kw)}\')" title="Filter by #{html.escape(kw)}">#{kw}</button>')
     kw_html = f'<div class="paper-keywords">{"".join(kw_chips)}</div>' if kw_chips else ''
 
+    highlight_pill = '<span class="highlight-star mono">★ HIGHLIGHT</span>' if is_highlight else ''
+
     # Clean, elegant card layout without excessive inner borders
     card_html = f"""
     <article class="pub-card" data-category="{cat}" data-highlight="{'true' if is_highlight else 'false'}" data-year="{p['year']}">
       <div class="pub-header">
         <span class="venue-badge {badge_class} mono">{badge}</span>
+        {highlight_pill}
         <h3 class="pub-title">{title_html}</h3>
         {cites_badge}
       </div>
@@ -572,8 +575,9 @@ full_html = f"""<!DOCTYPE html>
       color: var(--text-muted);
       margin-top: 5px;
       font-weight: 400;
-      max-width: 62ch;
+      max-width: 70ch;
       line-height: 1.5;
+      text-wrap: balance;
       margin-left: auto;
       margin-right: auto;
     }}
@@ -931,10 +935,21 @@ full_html = f"""<!DOCTYPE html>
       font-size: 12px;
       color: var(--text-sub);
     }}
-    .heatmap-img {{
+    .heatmap-svg-wrap {{
+      width: 100%;
+    }}
+    .heatmap-svg-wrap svg {{
       width: 100%;
       height: auto;
       display: block;
+    }}
+    .heatmap-svg-wrap .day {{
+      cursor: pointer;
+      transition: stroke 0.12s ease;
+    }}
+    .heatmap-svg-wrap .day:hover {{
+      stroke: #0284c7 !important;
+      stroke-width: 1.5px !important;
     }}
     .heatmap-legend {{
       display: flex;
@@ -1145,6 +1160,22 @@ full_html = f"""<!DOCTYPE html>
       flex-shrink: 0;
       text-transform: uppercase;
       letter-spacing: 0.02em;
+    }}
+    .highlight-star {{
+      font-size: 10px;
+      font-weight: 700;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }}
+    .pub-card[data-highlight="true"] {{
+      border-color: #cbd5e1;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfdfe 100%);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
     }}
     /* Unified Scholarly Badge Styles */
     .badge-tier {{
@@ -1444,23 +1475,20 @@ full_html = f"""<!DOCTYPE html>
     @media (max-width: 640px) {{
       /* Compact, non-wrapping mobile header with smooth edge-fade mask */
       .utility-header {{
-        padding: 0 16px;
+        padding: 0 12px;
         height: 48px;
-        gap: 12px;
+        justify-content: center;
       }}
-      .brand-chip, .status-location {{
+      .nav-brand, .brand-chip, .status-location {{
         display: none;
       }}
       .nav-links {{
-        gap: 14px;
-        font-size: 12.5px;
-        overflow-x: auto;
+        gap: 12px;
+        font-size: 12px;
+        justify-content: center;
+        width: 100%;
         white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
-        mask-image: linear-gradient(to right, black 82%, transparent 100%);
-        padding-right: 16px;
+        padding: 0;
       }}
       .nav-links::-webkit-scrollbar {{
         display: none;
@@ -1768,7 +1796,9 @@ full_html = f"""<!DOCTYPE html>
               <span style="color: #0369a1; font-weight: 600;">{overall_commit_count:,} Commits</span>
             </div>
             
-            <img src="assets/github-heatmap.svg" alt="Jiankai Sun Overall Activity Heatmap" class="heatmap-img" loading="lazy">
+            <div class="heatmap-svg-wrap">
+              {heatmap_svg}
+            </div>
             
             <div class="heatmap-legend mono">
               <span>Less</span>
