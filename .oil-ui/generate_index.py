@@ -886,23 +886,32 @@ full_html = f"""<!DOCTYPE html>
       box-shadow: none;
       border-radius: 0;
     }}
-    .sidebar-head {{
+    .sidebar-head, .stream-head {{
       font-size: 12.5px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-sub);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      min-height: 20px;
+      line-height: 20px;
+    }}
+    .sidebar-head a, .stream-head .stream-total {{
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: normal;
     }}
     .sidebar-head a {{
       color: var(--primary);
       text-decoration: none;
-      font-size: 12px;
-      text-transform: none;
-      letter-spacing: normal;
+    }}
+    .sidebar-head a:hover {{
+      text-decoration: underline;
     }}
 
     /* GitHub Heatmap Container */
@@ -1204,7 +1213,7 @@ full_html = f"""<!DOCTYPE html>
       color: var(--text-muted);
       line-height: 1.5;
       max-width: 72ch;
-      margin: 2px 0 3px 0;
+      margin: 3px 0 5px 0;
     }}
     .tldr-badge {{
       font-size: 11px;
@@ -1218,7 +1227,7 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
-      margin-top: 2px;
+      margin-top: 6px;
     }}
     .paper-kw {{
       font-size: 11px;
@@ -1242,7 +1251,7 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 6px;
+      margin-top: 8px;
     }}
     .action-btn {{
       display: inline-flex;
@@ -1462,6 +1471,16 @@ full_html = f"""<!DOCTYPE html>
       }}
       .hero-title h1 {{
         font-size: 32px;
+      }}
+      .social-pills {{
+        gap: 8px 10px;
+        max-width: 340px;
+        margin: 0 auto;
+        justify-content: center;
+      }}
+      .social-pill {{
+        font-size: 12px;
+        padding: 5px 11px;
       }}
       .bio-prose {{
         text-align: left;
@@ -1774,6 +1793,10 @@ full_html = f"""<!DOCTYPE html>
 
       <!-- Right Column: Searchable, Filterable Publications Stream -->
       <section class="main-col">
+        <div class="stream-head mono">
+          <span>Publications Stream</span>
+          <span class="stream-total">{len(papers)} works · 32 papers · 18 patents</span>
+        </div>
         
         <!-- Filter Controls -->
         <div class="filter-bar">
