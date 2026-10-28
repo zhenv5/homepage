@@ -166,7 +166,7 @@
       width: 100%;
     }
     .hero-title h1 {
-      font-size: 42px;
+      font-size: 44px;
       font-weight: 700;
       letter-spacing: -0.025em;
       color: #0c0a09;
@@ -175,9 +175,10 @@
     .hero-subtitle {
       font-size: 16px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 5px;
       font-weight: 400;
       max-width: 62ch;
+      line-height: 1.5;
       margin-left: auto;
       margin-right: auto;
     }
@@ -226,7 +227,7 @@
       color: #292524;
       max-width: 66ch;
       margin: 0 auto;
-      text-align: center;
+      text-align: left;
     }
     .bio-prose p {
       margin-bottom: 12px;
@@ -244,7 +245,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
       padding-top: 10px;
       width: 100%;
     }
@@ -253,15 +254,17 @@
       flex-direction: column;
     }
     .metric-value {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       color: #0c0a09;
       line-height: 1.1;
+      font-variant-numeric: tabular-nums;
     }
     .metric-label {
       font-size: 12px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: var(--text-sub);
       margin-top: 3px;
     }
@@ -316,6 +319,11 @@
       border-color: #0369a1;
       box-shadow: 0 4px 16px rgba(3, 105, 161, 0.08);
       transform: translateY(-2px);
+    }
+    .pillar-card.active {
+      border-color: #0369a1;
+      background: #f0f9ff;
+      box-shadow: 0 0 0 1.5px #0369a1;
     }
     .pillar-index {
       font-size: 11px;
@@ -444,13 +452,25 @@
       font-size: 11.5px;
       color: var(--text-sub);
       margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .vibe-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     /* Two Column Layout Grid */
     .layout-grid {
       display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 32px;
+      grid-template-columns: 360px 1fr;
+      gap: 36px;
       align-items: start;
     }
 
@@ -458,7 +478,9 @@
     .sidebar-col {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
+      position: sticky;
+      top: 68px;
     }
     .sidebar-block {
       display: flex;
@@ -581,6 +603,18 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 16px 20px;
+    }
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: -2px;
+    }
+    .filter-count {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
     .search-wrapper {
       position: relative;
@@ -738,6 +772,17 @@
       line-height: 1.4;
       max-width: 78ch;
     }
+    .pub-title-link {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .pub-title-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: #bae6fd;
+      text-underline-offset: 3px;
+    }
     .pub-authors {
       font-size: 13.5px;
       color: var(--text-muted);
@@ -753,8 +798,9 @@
     /* Natural publication venue font (no forced long mono lines) */
     .pub-venue {
       font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.4;
+      color: #64748b;
+      font-style: italic;
+      line-height: 1.45;
       max-width: 82ch;
     }
     /* Clean Editorial TL;DR */
@@ -784,8 +830,18 @@
       color: #0369a1;
       background: #f0f9ff;
       border: 1px solid #bae6fd;
-      padding: 1px 6px;
-      border-radius: 3px;
+      padding: 1px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      line-height: 1.5;
+    }
+    .paper-kw:hover {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #0284c7;
+      transform: translateY(-1px);
     }
     .pub-actions {
       display: flex;
@@ -838,23 +894,23 @@
       flex-shrink: 0;
     }
 
-    /* Toast Notification */
+    /* Toast Notification (Centered Bottom Pill) */
     .toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 28px;
+      left: 50%;
+      transform: translate(-50%, 12px);
       background: #0f172a;
       color: #ffffff;
-      padding: 9px 16px;
-      border-radius: var(--radius-sm);
+      padding: 9px 18px;
+      border-radius: 9999px;
       font-size: 12.5px;
       font-weight: 500;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.24);
       opacity: 0;
       pointer-events: none;
-      transform: translateY(8px);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 999;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -862,7 +918,100 @@
     .toast.show {
       opacity: 1;
       pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    /* Floating Back-to-Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 90;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
       transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: #f8fafc;
+      color: var(--primary);
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+      transform: translateY(-2px);
+    }
+    .back-to-top:active {
+      transform: translateY(0) scale(0.96);
+    }
+
+    /* Site Footer */
+    .site-footer {
+      margin-top: 56px;
+      border-top: 1px solid var(--border);
+      padding: 36px 0 48px;
+      color: var(--text-sub);
+      font-size: 13px;
+      width: 100%;
+    }
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .footer-title {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .footer-sep {
+      color: #cbd5e1;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      font-size: 12.5px;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    .footer-copy {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 4px;
     }
 
     /* Responsive Breakpoints */
@@ -877,6 +1026,9 @@
     @media (max-width: 960px) {
       .layout-grid {
         grid-template-columns: 1fr;
+      }
+      .sidebar-col {
+        position: static;
       }
       .metrics-row {
         gap: 16px;
@@ -910,18 +1062,33 @@
         display: none;
       }
       .container {
-        padding: 20px 14px 48px 14px;
+        padding: 20px 16px 48px 16px;
         gap: 36px;
       }
       .hero-title h1 {
-        font-size: 30px;
+        font-size: 32px;
+      }
+      .bio-prose {
+        text-align: left;
+        font-size: 14.5px;
+        line-height: 1.65;
       }
       .metrics-row {
-        flex-wrap: wrap;
-        gap: 14px 24px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 20px;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .metric-item {
+        align-items: center;
+        text-align: center;
       }
       .metric-value {
-        font-size: 20px;
+        font-size: 22px;
+      }
+      .metric-divider {
+        display: none;
       }
       .pillars-grid {
         grid-template-columns: 1fr;
@@ -1184,7 +1351,7 @@
           <div class="heatmap-container">
             <div class="heatmap-meta mono">
               <span>Public & Private Repos</span>
-              <span style="color: #0369a1; font-weight: 600;">3,466 Commits</span>
+              <span style="color: #0369a1; font-weight: 600;">3,490 Commits</span>
             </div>
             
             <img src="assets/github-heatmap.svg" alt="Jiankai Sun Overall Activity Heatmap" class="heatmap-img" loading="lazy">
@@ -1204,6 +1371,7 @@
 
           <!-- Featured Open Source Repos -->
           <div class="repo-items">
+            
             <a href="https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies" target="_blank" rel="noopener" class="repo-card">
               <div class="repo-name mono">
                 <span>breaking_cycles_in_noisy_hierarchies</span>
@@ -1226,9 +1394,6 @@
               <div class="repo-desc">Directed graph embedding preserving asymmetric transitivity (AAAI 2019).</div>
             </a>
           </div>
-              <div class="repo-desc">Cold-start question routing with factorization machines (ECML-PKDD 2018).</div>
-            </a>
-          </div>
         </div>
 
       </aside>
@@ -1238,6 +1403,10 @@
         
         <!-- Filter Controls -->
         <div class="filter-bar">
+          <div class="filter-header">
+            <span class="filter-count mono" id="filter-count">Showing all 50 publications &amp; patents</span>
+          </div>
+
           <div class="search-wrapper">
             <span class="search-icon">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -1249,7 +1418,7 @@
 
           <div class="filter-tabs mono" id="filter-tabs">
             <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All (50)</button>
-            <button class="filter-btn" data-filter="highlight" onclick="setFilter('highlight', this)">Selected Highlights</button>
+            <button class="filter-btn" data-filter="highlight" onclick="setFilter('highlight', this)">Selected Highlights (20)</button>
             <button class="filter-btn" data-filter="privacy" onclick="setFilter('privacy', this)">Privacy & Federated (12)</button>
             <button class="filter-btn" data-filter="recsys" onclick="setFilter('recsys', this)">Recommender Systems (7)</button>
             <button class="filter-btn" data-filter="graph" onclick="setFilter('graph', this)">Graph Learning (8)</button>
@@ -1264,13 +1433,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2020">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">ICLR 2022</span>
-        <h3 class="pub-title">Label Leakage and Protection in Two-party Split Learning</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2102.08504" target="_blank" rel="noopener" class="pub-title-link">Label Leakage and Protection in Two-party Split Learning</a></h3>
         <span class="cite-count mono">250 cites</span>
       </div>
       <div class="pub-authors">O Li, <span class="author-self">J Sun</span>, W Gao, H Zhang, X Yang, J Xie, C Wang</div>
       <div class="pub-venue">ICLR 2022, 2020</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Demonstrates gradient inversion label leakage in vertical split learning and designs the Marvell noise defense mechanism to preserve privacy without degrading utility.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Split Learning</span><span class="paper-kw mono">#Label Leakage</span><span class="paper-kw mono">#Gradient Defense</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Split Learning')" title="Filter by #Split Learning">#Split Learning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Label Leakage')" title="Filter by #Label Leakage">#Label Leakage</button><button type="button" class="paper-kw mono" onclick="filterByTag('Gradient Defense')" title="Filter by #Gradient Defense">#Gradient Defense</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2102.08504" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/OscarcarLi/label-protection" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:1sJd4Hv_s6UC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{label2020,
   title={Label Leakage and Protection in Two-party Split Learning},
   author={O Li, J Sun, W Gao, H Zhang, X Yang, J Xie, C Wang},
@@ -1282,13 +1451,13 @@
     <article class="pub-card" data-category="graph" data-highlight="true" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">WSDM 2023</span>
-        <h3 class="pub-title">Dgrec: Graph neural network for recommendation with diversified embedding generation</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2211.10486" target="_blank" rel="noopener" class="pub-title-link">Dgrec: Graph neural network for recommendation with diversified embedding generation</a></h3>
         <span class="cite-count mono">217 cites</span>
       </div>
       <div class="pub-authors">L Yang, S Wang, Y Tao, <span class="author-self">J Sun</span>, X Liu, PS Yu, T Wang</div>
       <div class="pub-venue">Proceedings of the sixteenth ACM international conference on web search and …, 2023</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Diversified graph embedding generation for mitigating filter bubbles in user-item recommendation graphs.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Graph Neural Networks</span><span class="paper-kw mono">#Embedding Diversification</span><span class="paper-kw mono">#RecSys</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Graph Neural Networks')" title="Filter by #Graph Neural Networks">#Graph Neural Networks</button><button type="button" class="paper-kw mono" onclick="filterByTag('Embedding Diversification')" title="Filter by #Embedding Diversification">#Embedding Diversification</button><button type="button" class="paper-kw mono" onclick="filterByTag('RecSys')" title="Filter by #RecSys">#RecSys</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2211.10486" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/YangLiangwei/DGRec" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:738O_yMBCRsC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{dgrec2023,
   title={Dgrec: Graph neural network for recommendation with diversified embedding generation},
   author={L Yang, S Wang, Y Tao, J Sun, X Liu, PS Yu, T Wang},
@@ -1300,7 +1469,7 @@
     <article class="pub-card" data-category="recsys" data-highlight="true" data-year="2017">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2017</span>
-        <h3 class="pub-title">Learning to recommend accurate and diverse items</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:fPk4N6BV_jEC" target="_blank" rel="noopener" class="pub-title-link">Learning to recommend accurate and diverse items</a></h3>
         <span class="cite-count mono">181 cites</span>
       </div>
       <div class="pub-authors">P Cheng, S Wang, J Ma, <span class="author-self">J Sun</span>, H Xiong</div>
@@ -1318,7 +1487,7 @@
     <article class="pub-card" data-category="graph" data-highlight="true" data-year="2018">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2018</span>
-        <h3 class="pub-title">Semi-supervised embedding in attributed networks with outliers</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:EUQCXRtRnyEC" target="_blank" rel="noopener" class="pub-title-link">Semi-supervised embedding in attributed networks with outliers</a></h3>
         <span class="cite-count mono">140 cites</span>
       </div>
       <div class="pub-authors">J Liang, P Jacobs, <span class="author-self">J Sun</span>, S Parthasarathy</div>
@@ -1336,13 +1505,13 @@
     <article class="pub-card" data-category="recsys" data-highlight="true" data-year="2021">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">CIKM 2021</span>
-        <h3 class="pub-title">Learning an end-to-end structure for retrieval in large-scale recommendations</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:dshw04ExmUIC" target="_blank" rel="noopener" class="pub-title-link">Learning an end-to-end structure for retrieval in large-scale recommendations</a></h3>
         <span class="cite-count mono">75 cites</span>
       </div>
       <div class="pub-authors">W Gao, X Fan, C Wang, <span class="author-self">J Sun</span>, K Jia, W Xiao, R Ding, X Bin, H Yang, X Liu</div>
       <div class="pub-venue">Proceedings of the 30th ACM international conference on information …, 2021</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Retrieval Indexing</span><span class="paper-kw mono">#End-to-End Learning</span><span class="paper-kw mono">#Recommendation Systems</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Retrieval Indexing')" title="Filter by #Retrieval Indexing">#Retrieval Indexing</button><button type="button" class="paper-kw mono" onclick="filterByTag('End-to-End Learning')" title="Filter by #End-to-End Learning">#End-to-End Learning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Recommendation Systems')" title="Filter by #Recommendation Systems">#Recommendation Systems</button></div>
       <div class="pub-actions mono"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:dshw04ExmUIC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{learning2021,
   title={Learning an end-to-end structure for retrieval in large-scale recommendations},
   author={W Gao, X Fan, C Wang, J Sun, K Jia, W Xiao, R Ding, X Bin, H Yang, X Liu},
@@ -1354,13 +1523,13 @@
     <article class="pub-card" data-category="graph" data-highlight="true" data-year="2018">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">AAAI 2019</span>
-        <h3 class="pub-title">ATP: Directed Graph Embedding with Asymmetric Transitivity Preservation</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/1811.00839" target="_blank" rel="noopener" class="pub-title-link">ATP: Directed Graph Embedding with Asymmetric Transitivity Preservation</a></h3>
         <span class="cite-count mono">69 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, B Bandyopadhyay, A Bashizade, J Liang, P Sadayappan, ...</div>
       <div class="pub-venue">The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI 2019), 2018</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Preserves high-order directed reachability and transitivity via asymmetric non-linear dual-vector projections.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Directed Graph Embedding</span><span class="paper-kw mono">#Asymmetric Transitivity</span><span class="paper-kw mono">#Non-linear Mapping</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Directed Graph Embedding')" title="Filter by #Directed Graph Embedding">#Directed Graph Embedding</button><button type="button" class="paper-kw mono" onclick="filterByTag('Asymmetric Transitivity')" title="Filter by #Asymmetric Transitivity">#Asymmetric Transitivity</button><button type="button" class="paper-kw mono" onclick="filterByTag('Non-linear Mapping')" title="Filter by #Non-linear Mapping">#Non-linear Mapping</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/1811.00839" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/zhenv5/atp" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="documents/Paper_ATP_Directed_Graph_Embedding_AAAI_2019.pdf" target="_blank" rel="noopener" class="action-btn">PDF ↗</a><a href="documents/Slides_AAAI_2019_ATP.pdf" target="_blank" rel="noopener" class="action-btn">Slides ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:f2IySw72cVMC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{atp2018,
   title={ATP: Directed Graph Embedding with Asymmetric Transitivity Preservation},
   author={J Sun, B Bandyopadhyay, A Bashizade, J Liang, P Sadayappan, ...},
@@ -1372,13 +1541,13 @@
     <article class="pub-card" data-category="recsys" data-highlight="true" data-year="2014">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">ACM TIST 2014</span>
-        <h3 class="pub-title">Vsrank: A novel framework for ranking-based collaborative filtering</h3>
+        <h3 class="pub-title"><a href="documents/Paper_TIST2014_VSRank.pdf" target="_blank" rel="noopener" class="pub-title-link">Vsrank: A novel framework for ranking-based collaborative filtering</a></h3>
         <span class="cite-count mono">66 cites</span>
       </div>
       <div class="pub-authors">S Wang, <span class="author-self">J Sun</span>, BJ Gao, J Ma</div>
       <div class="pub-venue">ACM Transactions on Intelligent Systems and Technology (TIST) 5 (3), 1-24, 2014</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Collaborative Filtering</span><span class="paper-kw mono">#Ranking Optimization</span><span class="paper-kw mono">#Vector Space Model</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Collaborative Filtering')" title="Filter by #Collaborative Filtering">#Collaborative Filtering</button><button type="button" class="paper-kw mono" onclick="filterByTag('Ranking Optimization')" title="Filter by #Ranking Optimization">#Ranking Optimization</button><button type="button" class="paper-kw mono" onclick="filterByTag('Vector Space Model')" title="Filter by #Vector Space Model">#Vector Space Model</button></div>
       <div class="pub-actions mono"><a href="documents/Paper_TIST2014_VSRank.pdf" target="_blank" rel="noopener" class="action-btn">PDF ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{vsrank2014,
   title={Vsrank: A novel framework for ranking-based collaborative filtering},
   author={S Wang, J Sun, BJ Gao, J Ma},
@@ -1390,13 +1559,13 @@
     <article class="pub-card" data-category="other" data-highlight="true" data-year="2017">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">WebSci 2017</span>
-        <h3 class="pub-title">Breaking cycles in noisy hierarchies</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/1703.08100" target="_blank" rel="noopener" class="pub-title-link">Breaking cycles in noisy hierarchies</a></h3>
         <span class="cite-count mono">64 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, D Ajwani, PK Nicholson, A Sala, S Parthasarathy</div>
       <div class="pub-venue">Proceedings of the 2017 ACM on web science conference, 151-160, 2017</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Approximation algorithm resolving minimal feedback arc sets in web and noisy social hierarchies.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Noisy Hierarchies</span><span class="paper-kw mono">#Cycle Breaking</span><span class="paper-kw mono">#Social Graphs</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Noisy Hierarchies')" title="Filter by #Noisy Hierarchies">#Noisy Hierarchies</button><button type="button" class="paper-kw mono" onclick="filterByTag('Cycle Breaking')" title="Filter by #Cycle Breaking">#Cycle Breaking</button><button type="button" class="paper-kw mono" onclick="filterByTag('Social Graphs')" title="Filter by #Social Graphs">#Social Graphs</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/1703.08100" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="documents/Paper_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf" target="_blank" rel="noopener" class="action-btn">PDF ↗</a><a href="documents/Slides_WebSci_2017_Breaking_Cycles_in_Noisy_Hierarchies.pdf" target="_blank" rel="noopener" class="action-btn">Slides ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:4OULZ7Gr8RgC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{breaking2017,
   title={Breaking cycles in noisy hierarchies},
   author={J Sun, D Ajwani, PK Nicholson, A Sala, S Parthasarathy},
@@ -1408,7 +1577,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Differentially private label protection in split learning</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:uWQEDVKXjbEC" target="_blank" rel="noopener" class="pub-title-link">Differentially private label protection in split learning</a></h3>
         <span class="cite-count mono">62 cites</span>
       </div>
       <div class="pub-authors">X Yang, <span class="author-self">J Sun</span>, Y Yao, J Xie, C Wang</div>
@@ -1426,7 +1595,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Label leakage and protection from forward embedding in vertical federated learning</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:SP6oXDckpogC" target="_blank" rel="noopener" class="pub-title-link">Label leakage and protection from forward embedding in vertical federated learning</a></h3>
         <span class="cite-count mono">62 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, X Yang, Y Yao, C Wang</div>
@@ -1444,7 +1613,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2021">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2021</span>
-        <h3 class="pub-title">Vertical federated learning without revealing intersection membership</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:P5F9QuxV20EC" target="_blank" rel="noopener" class="pub-title-link">Vertical federated learning without revealing intersection membership</a></h3>
         <span class="cite-count mono">52 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, X Yang, Y Yao, A Zhang, W Gao, J Xie, C Wang</div>
@@ -1462,13 +1631,13 @@
     <article class="pub-card" data-category="llm" data-highlight="true" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">ICML 2023</span>
-        <h3 class="pub-title">Weak proxies are sufficient and preferable for fairness with missing sensitive attributes</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2306.03859" target="_blank" rel="noopener" class="pub-title-link">Weak proxies are sufficient and preferable for fairness with missing sensitive attributes</a></h3>
         <span class="cite-count mono">44 cites</span>
       </div>
       <div class="pub-authors">Z Zhu, Y Yao, <span class="author-self">J Sun</span>, H Li, Y Liu</div>
       <div class="pub-venue">International Conference on Machine Learning, 43258-43288, 2023</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Proves that weak proxy representations achieve Pareto-optimal algorithmic fairness when sensitive attributes are unobserved.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#AI Fairness</span><span class="paper-kw mono">#Weak Proxies</span><span class="paper-kw mono">#Sensitive Attributes</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('AI Fairness')" title="Filter by #AI Fairness">#AI Fairness</button><button type="button" class="paper-kw mono" onclick="filterByTag('Weak Proxies')" title="Filter by #Weak Proxies">#Weak Proxies</button><button type="button" class="paper-kw mono" onclick="filterByTag('Sensitive Attributes')" title="Filter by #Sensitive Attributes">#Sensitive Attributes</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2306.03859" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:geHnlv5EZngC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{weak2023,
   title={Weak proxies are sufficient and preferable for fairness with missing sensitive attributes},
   author={Z Zhu, Y Yao, J Sun, H Li, Y Liu},
@@ -1480,13 +1649,13 @@
     <article class="pub-card" data-category="llm" data-highlight="true" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">arXiv 2024</span>
-        <h3 class="pub-title">Leveraging print debugging to improve code generation in large language models</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2401.05319" target="_blank" rel="noopener" class="pub-title-link">Leveraging print debugging to improve code generation in large language models</a></h3>
         <span class="cite-count mono">40 cites</span>
       </div>
       <div class="pub-authors">X Hu, K Kuang, <span class="author-self">J Sun</span>, H Yang, F Wu</div>
       <div class="pub-venue">arXiv preprint arXiv:2401.05319, 2024</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Proposes LDB (Large Language Model Debugger), enabling LLMs to segment, trace, and verify variable execution states like human developers.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#LLM Code Generation</span><span class="paper-kw mono">#Print Debugging</span><span class="paper-kw mono">#Self-Refinement</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('LLM Code Generation')" title="Filter by #LLM Code Generation">#LLM Code Generation</button><button type="button" class="paper-kw mono" onclick="filterByTag('Print Debugging')" title="Filter by #Print Debugging">#Print Debugging</button><button type="button" class="paper-kw mono" onclick="filterByTag('Self-Refinement')" title="Filter by #Self-Refinement">#Self-Refinement</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2401.05319" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:LPZeul_q3PIC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{leveraging2024,
   title={Leveraging print debugging to improve code generation in large language models},
   author={X Hu, K Kuang, J Sun, H Yang, F Wu},
@@ -1498,13 +1667,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2021">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">FL-ICML 2021</span>
-        <h3 class="pub-title">Defending against Reconstruction Attack in Vertical Federated Learning</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2107.09898" target="_blank" rel="noopener" class="pub-title-link">Defending against Reconstruction Attack in Vertical Federated Learning</a></h3>
         <span class="cite-count mono">40 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, Y Yao, W Gao, J Xie, C Wang</div>
       <div class="pub-venue">FL-ICML 2021, 2021</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Vertical FedLearning</span><span class="paper-kw mono">#Reconstruction Attack</span><span class="paper-kw mono">#Feature Encryption</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Vertical FedLearning')" title="Filter by #Vertical FedLearning">#Vertical FedLearning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Reconstruction Attack')" title="Filter by #Reconstruction Attack">#Reconstruction Attack</button><button type="button" class="paper-kw mono" onclick="filterByTag('Feature Encryption')" title="Filter by #Feature Encryption">#Feature Encryption</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2107.09898" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/bytedance/fedlearner/tree/master/example/privacy/embedding_protection" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:KxtntwgDAa4C" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{defending2021,
   title={Defending against Reconstruction Attack in Vertical Federated Learning},
   author={J Sun, Y Yao, W Gao, J Xie, C Wang},
@@ -1516,13 +1685,13 @@
     <article class="pub-card" data-category="recsys" data-highlight="false" data-year="2012">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">CIKM 2012</span>
-        <h3 class="pub-title">Learning to rank for hybrid recommendation</h3>
+        <h3 class="pub-title"><a href="documents/Paper_CIKM2012_Learning_to_Rank_for_Hybrid_R.pdf" target="_blank" rel="noopener" class="pub-title-link">Learning to rank for hybrid recommendation</a></h3>
         <span class="cite-count mono">36 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, S Wang, BJ Gao, J Ma</div>
       <div class="pub-venue">Proceedings of the 21st ACM international conference on Information and …, 2012</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Hybrid Recommendations</span><span class="paper-kw mono">#Learning to Rank</span><span class="paper-kw mono">#Feature Fusion</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Hybrid Recommendations')" title="Filter by #Hybrid Recommendations">#Hybrid Recommendations</button><button type="button" class="paper-kw mono" onclick="filterByTag('Learning to Rank')" title="Filter by #Learning to Rank">#Learning to Rank</button><button type="button" class="paper-kw mono" onclick="filterByTag('Feature Fusion')" title="Filter by #Feature Fusion">#Feature Fusion</button></div>
       <div class="pub-actions mono"><a href="documents/Paper_CIKM2012_Learning_to_Rank_for_Hybrid_R.pdf" target="_blank" rel="noopener" class="action-btn">PDF ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:u-x6o8ySG0sC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{learning2012,
   title={Learning to rank for hybrid recommendation},
   author={J Sun, S Wang, BJ Gao, J Ma},
@@ -1534,7 +1703,7 @@
     <article class="pub-card" data-category="other" data-highlight="false" data-year="2018">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2018</span>
-        <h3 class="pub-title">QDEE: Question Difficulty and Expertise Estimation in Community Question Answering Sites</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:a0OBvERweLwC" target="_blank" rel="noopener" class="pub-title-link">QDEE: Question Difficulty and Expertise Estimation in Community Question Answering Sites</a></h3>
         <span class="cite-count mono">35 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, S Moosavi, R Ramnath, S Parthasarathy</div>
@@ -1552,13 +1721,13 @@
     <article class="pub-card" data-category="recsys" data-highlight="false" data-year="2012">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">CIKM 2012</span>
-        <h3 class="pub-title">Adapting vector space model to ranking-based collaborative filtering</h3>
+        <h3 class="pub-title"><a href="documents/Paper_CIKM2012_Adapting_Vector_Space_Model_to_Ranking_based_CF.pdf" target="_blank" rel="noopener" class="pub-title-link">Adapting vector space model to ranking-based collaborative filtering</a></h3>
         <span class="cite-count mono">34 cites</span>
       </div>
       <div class="pub-authors">S Wang, <span class="author-self">J Sun</span>, BJ Gao, J Ma</div>
       <div class="pub-venue">Proceedings of the 21st ACM international conference on Information and …, 2012</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Vector Space Model</span><span class="paper-kw mono">#CF Ranking</span><span class="paper-kw mono">#Implicit Feedback</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Vector Space Model')" title="Filter by #Vector Space Model">#Vector Space Model</button><button type="button" class="paper-kw mono" onclick="filterByTag('CF Ranking')" title="Filter by #CF Ranking">#CF Ranking</button><button type="button" class="paper-kw mono" onclick="filterByTag('Implicit Feedback')" title="Filter by #Implicit Feedback">#Implicit Feedback</button></div>
       <div class="pub-actions mono"><a href="documents/Paper_CIKM2012_Adapting_Vector_Space_Model_to_Ranking_based_CF.pdf" target="_blank" rel="noopener" class="action-btn">PDF ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{adapting2012,
   title={Adapting vector space model to ranking-based collaborative filtering},
   author={S Wang, J Sun, BJ Gao, J Ma},
@@ -1570,7 +1739,7 @@
     <article class="pub-card" data-category="graph" data-highlight="false" data-year="2020">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2020</span>
-        <h3 class="pub-title">EndCold: An End-to-End Framework for Cold Question Routing in Community Question Answering Services</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:xtRiw3GOFMkC" target="_blank" rel="noopener" class="pub-title-link">EndCold: An End-to-End Framework for Cold Question Routing in Community Question Answering Services</a></h3>
         <span class="cite-count mono">28 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, J Zhao, H Sun, S Parthasarathy</div>
@@ -1588,13 +1757,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">NeurIPS W 2022</span>
-        <h3 class="pub-title">Netflix and forget: Efficient and exact machine unlearning from bi-linear recommendations</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2302.06676" target="_blank" rel="noopener" class="pub-title-link">Netflix and forget: Efficient and exact machine unlearning from bi-linear recommendations</a></h3>
         <span class="cite-count mono">26 cites</span>
       </div>
       <div class="pub-authors">M Xu, <span class="author-self">J Sun</span>, X Yang, K Yao, C Wang</div>
       <div class="pub-venue">arXiv preprint arXiv:2302.06676, 2023</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Provable exact machine unlearning algorithm removing user interaction data from bilinear recommendation models with minimal retraining.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Machine Unlearning</span><span class="paper-kw mono">#Recommendation Privacy</span><span class="paper-kw mono">#Bi-linear Models</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Machine Unlearning')" title="Filter by #Machine Unlearning">#Machine Unlearning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Recommendation Privacy')" title="Filter by #Recommendation Privacy">#Recommendation Privacy</button><button type="button" class="paper-kw mono" onclick="filterByTag('Bi-linear Models')" title="Filter by #Bi-linear Models">#Bi-linear Models</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2302.06676" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:08ZZubdj9fEC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{netflix2023,
   title={Netflix and forget: Efficient and exact machine unlearning from bi-linear recommendations},
   author={M Xu, J Sun, X Yang, K Yao, C Wang},
@@ -1606,13 +1775,13 @@
     <article class="pub-card" data-category="graph" data-highlight="false" data-year="2018">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">ECML PKDD 2018</span>
-        <h3 class="pub-title">ColdRoute: effective routing of cold questions in stack exchange sites: J. Sun et al.</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/1807.00462" target="_blank" rel="noopener" class="pub-title-link">ColdRoute: effective routing of cold questions in stack exchange sites: J. Sun et al.</a></h3>
         <span class="cite-count mono">26 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, A Vishnu, A Chakrabarti, C Siegel, S Parthasarathy</div>
       <div class="pub-venue">Data mining and knowledge discovery 32 (5), 1339-1367, 2018</div>
       
-      <div class="paper-keywords"><span class="paper-kw mono">#Cold-Start Routing</span><span class="paper-kw mono">#Factorization Machines</span><span class="paper-kw mono">#Stack Exchange</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Cold-Start Routing')" title="Filter by #Cold-Start Routing">#Cold-Start Routing</button><button type="button" class="paper-kw mono" onclick="filterByTag('Factorization Machines')" title="Filter by #Factorization Machines">#Factorization Machines</button><button type="button" class="paper-kw mono" onclick="filterByTag('Stack Exchange')" title="Filter by #Stack Exchange">#Stack Exchange</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/1807.00462" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/zhenv5/ColdRoute" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="documents/Slides_ECMLPKDD_2018_ColdRoute.pdf" target="_blank" rel="noopener" class="action-btn">Slides ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:pyW8ca7W8N0C" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{coldroute2018,
   title={ColdRoute: effective routing of cold questions in stack exchange sites: J. Sun et al.},
   author={J Sun, A Vishnu, A Chakrabarti, C Siegel, S Parthasarathy},
@@ -1624,7 +1793,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="false" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2023</span>
-        <h3 class="pub-title">Label inference attack against split learning under regression setting</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:tOudhMTPpwUC" target="_blank" rel="noopener" class="pub-title-link">Label inference attack against split learning under regression setting</a></h3>
         <span class="cite-count mono">20 cites</span>
       </div>
       <div class="pub-authors">S Xie, X Yang, Y Yao, T Liu, T Wang, <span class="author-self">J Sun</span></div>
@@ -1642,13 +1811,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">AAAI 2023</span>
-        <h3 class="pub-title">DPAUC: Differentially Private AUC Computation in Federated Learning</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2211.10486" target="_blank" rel="noopener" class="pub-title-link">DPAUC: Differentially Private AUC Computation in Federated Learning</a></h3>
         <span class="cite-count mono">14 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, X Yang, Y Yao, J Xie, D Wu, C Wang</div>
       <div class="pub-venue">The Thirty-Seventh AAAI Conference on Artificial Intelligence (AAAI 2023 …, 2022</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Formulates differentially private pairwise ranking loss optimization with DP-SGD for cross-silo advertising conversion.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Federated Learning</span><span class="paper-kw mono">#Differential Privacy</span><span class="paper-kw mono">#AUC Optimization</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Federated Learning')" title="Filter by #Federated Learning">#Federated Learning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Differential Privacy')" title="Filter by #Differential Privacy">#Differential Privacy</button><button type="button" class="paper-kw mono" onclick="filterByTag('AUC Optimization')" title="Filter by #AUC Optimization">#AUC Optimization</button></div>
       <div class="pub-actions mono"><a href="https://arxiv.org/abs/2211.10486" target="_blank" rel="noopener" class="action-btn">arXiv ↗</a><a href="https://github.com/bytedance/fedlearner/tree/master/example/privacy/DPAUC" target="_blank" rel="noopener" class="action-btn">Code ↗</a><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:XiSMed-E-HIC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{dpauc2022,
   title={DPAUC: Differentially Private AUC Computation in Federated Learning},
   author={J Sun, X Yang, Y Yao, J Xie, D Wu, C Wang},
@@ -1660,13 +1829,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">CIKM 2023</span>
-        <h3 class="pub-title">PSLF: defending against label leakage in split learning</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:8AbLer7MMksC" target="_blank" rel="noopener" class="pub-title-link">PSLF: defending against label leakage in split learning</a></h3>
         <span class="cite-count mono">13 cites</span>
       </div>
       <div class="pub-authors">X Wan, <span class="author-self">J Sun</span>, S Wang, L Chen, Z Zheng, F Wu, G Chen</div>
       <div class="pub-venue">Proceedings of the 32nd ACM International Conference on Information and …, 2023</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Proposes perturbation mechanisms for intermediate representations to neutralize gradient inversion attacks in split networks.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Split Learning</span><span class="paper-kw mono">#Adversarial Defense</span><span class="paper-kw mono">#Feature Obfuscation</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Split Learning')" title="Filter by #Split Learning">#Split Learning</button><button type="button" class="paper-kw mono" onclick="filterByTag('Adversarial Defense')" title="Filter by #Adversarial Defense">#Adversarial Defense</button><button type="button" class="paper-kw mono" onclick="filterByTag('Feature Obfuscation')" title="Filter by #Feature Obfuscation">#Feature Obfuscation</button></div>
       <div class="pub-actions mono"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:8AbLer7MMksC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{pslf2023,
   title={PSLF: defending against label leakage in split learning},
   author={X Wan, J Sun, S Wang, L Chen, Z Zheng, F Wu, G Chen},
@@ -1678,7 +1847,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="false" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Differentially private AUC computation in vertical federated learning</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:p2g8aNsByqUC" target="_blank" rel="noopener" class="pub-title-link">Differentially private AUC computation in vertical federated learning</a></h3>
         <span class="cite-count mono">8 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, X Yang, Y Yao, J Xie, D Wu, C Wang</div>
@@ -1696,13 +1865,13 @@
     <article class="pub-card" data-category="privacy" data-highlight="true" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">RecSys 2024</span>
-        <h3 class="pub-title">Privacy Preserving Conversion Modeling in Data Clean Room</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:kRWSkSYxWN8C" target="_blank" rel="noopener" class="pub-title-link">Privacy Preserving Conversion Modeling in Data Clean Room</a></h3>
         <span class="cite-count mono">7 cites</span>
       </div>
       <div class="pub-authors">K Li, X Chen, L Leng, J Xu, <span class="author-self">J Sun</span>, B Rezaei</div>
       <div class="pub-venue">Proceedings of the 18th ACM Conference on Recommender Systems, 819-822, 2024</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Architects an end-to-end framework enabling multi-party ad attribution and CTR modeling within secure clean rooms.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Data Clean Room</span><span class="paper-kw mono">#Privacy-Preserving ML</span><span class="paper-kw mono">#Conversion Modeling</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Data Clean Room')" title="Filter by #Data Clean Room">#Data Clean Room</button><button type="button" class="paper-kw mono" onclick="filterByTag('Privacy-Preserving ML')" title="Filter by #Privacy-Preserving ML">#Privacy-Preserving ML</button><button type="button" class="paper-kw mono" onclick="filterByTag('Conversion Modeling')" title="Filter by #Conversion Modeling">#Conversion Modeling</button></div>
       <div class="pub-actions mono"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:kRWSkSYxWN8C" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{privacy2024,
   title={Privacy Preserving Conversion Modeling in Data Clean Room},
   author={K Li, X Chen, L Leng, J Xu, J Sun, B Rezaei},
@@ -1714,13 +1883,13 @@
     <article class="pub-card" data-category="graph" data-highlight="true" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">KDD 2023</span>
-        <h3 class="pub-title">Graph-based model-agnostic data subsampling for recommendation systems</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:B3FOqHPlNUQC" target="_blank" rel="noopener" class="pub-title-link">Graph-based model-agnostic data subsampling for recommendation systems</a></h3>
         <span class="cite-count mono">7 cites</span>
       </div>
       <div class="pub-authors">X Chen, <span class="author-self">J Sun</span>, T Wang, R Guo, LP Liu, A Zhang</div>
       <div class="pub-venue">Proceedings of the 29th ACM SIGKDD conference on knowledge discovery and …, 2023</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Graph topological subsampling enabling extreme throughput and training speedup on massive recommender datasets.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Graph Subsampling</span><span class="paper-kw mono">#Efficiency</span><span class="paper-kw mono">#Recommendation Scale</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Graph Subsampling')" title="Filter by #Graph Subsampling">#Graph Subsampling</button><button type="button" class="paper-kw mono" onclick="filterByTag('Efficiency')" title="Filter by #Efficiency">#Efficiency</button><button type="button" class="paper-kw mono" onclick="filterByTag('Recommendation Scale')" title="Filter by #Recommendation Scale">#Recommendation Scale</button></div>
       <div class="pub-actions mono"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:B3FOqHPlNUQC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{graphbased2023,
   title={Graph-based model-agnostic data subsampling for recommendation systems},
   author={X Chen, J Sun, T Wang, R Guo, LP Liu, A Zhang},
@@ -1732,7 +1901,7 @@
     <article class="pub-card" data-category="privacy" data-highlight="false" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Differentially private multi-party data release for linear regression</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:OU6Ihb5iCvQC" target="_blank" rel="noopener" class="pub-title-link">Differentially private multi-party data release for linear regression</a></h3>
         <span class="cite-count mono">4 cites</span>
       </div>
       <div class="pub-authors">R Wu, X Yang, Y Yao, <span class="author-self">J Sun</span>, T Liu, KQ Weinberger, C Wang</div>
@@ -1750,7 +1919,7 @@
     <article class="pub-card" data-category="recsys" data-highlight="false" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Netflix and Forget: Fast Severance From Memorizing Training Data in Recommendations</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:l7t_Zn2s7bgC" target="_blank" rel="noopener" class="pub-title-link">Netflix and Forget: Fast Severance From Memorizing Training Data in Recommendations</a></h3>
         <span class="cite-count mono">3 cites</span>
       </div>
       <div class="pub-authors">M Xu, <span class="author-self">J Sun</span>, X Yang, Y Yao, C Wang</div>
@@ -1768,7 +1937,7 @@
     <article class="pub-card" data-category="graph" data-highlight="false" data-year="2018">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2018</span>
-        <h3 class="pub-title">Symmetrization for Embedding Directed Graphs</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:bFI3QPDXJZMC" target="_blank" rel="noopener" class="pub-title-link">Symmetrization for Embedding Directed Graphs</a></h3>
         <span class="cite-count mono">3 cites</span>
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span>, S Parthasarathy</div>
@@ -1786,13 +1955,13 @@
     <article class="pub-card" data-category="recsys" data-highlight="true" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-tier mono">RecSys 2025</span>
-        <h3 class="pub-title">Decoupled Entity Representation Learning for Pinterest Ads Ranking</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:wbdj-CoPYUoC" target="_blank" rel="noopener" class="pub-title-link">Decoupled Entity Representation Learning for Pinterest Ads Ranking</a></h3>
         <span class="cite-count mono">2 cites</span>
       </div>
       <div class="pub-authors">J Liu, Y Li, <span class="author-self">J Sun</span>, K Li, H Sun, S Wang, H Wu, S Gao, P Soares, N Li, Z Liu, ...</div>
       <div class="pub-venue">Proceedings of the Nineteenth ACM Conference on Recommender Systems, 940-944, 2025</div>
       <div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> Decouples query and pin entity embeddings to scale real-time retrieval across billions of candidates in Pinterest Ads.</div>
-      <div class="paper-keywords"><span class="paper-kw mono">#Ads Ranking</span><span class="paper-kw mono">#Decoupled Representation</span><span class="paper-kw mono">#Large-Scale RecSys</span></div>
+      <div class="paper-keywords"><button type="button" class="paper-kw mono" onclick="filterByTag('Ads Ranking')" title="Filter by #Ads Ranking">#Ads Ranking</button><button type="button" class="paper-kw mono" onclick="filterByTag('Decoupled Representation')" title="Filter by #Decoupled Representation">#Decoupled Representation</button><button type="button" class="paper-kw mono" onclick="filterByTag('Large-Scale RecSys')" title="Filter by #Large-Scale RecSys">#Large-Scale RecSys</button></div>
       <div class="pub-actions mono"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:wbdj-CoPYUoC" target="_blank" rel="noopener" class="action-btn">Scholar ↗</a><button type="button" class="action-btn bib-btn" data-bib="@article{decoupled2025,
   title={Decoupled Entity Representation Learning for Pinterest Ads Ranking},
   author={J Liu, Y Li, J Sun, K Li, H Sun, S Wang, H Wu, S Gao, P Soares, N Li, Z Liu, ...},
@@ -1804,7 +1973,7 @@
     <article class="pub-card" data-category="llm" data-highlight="false" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2022</span>
-        <h3 class="pub-title">Evaluating fairness without sensitive attributes: A framework using only auxiliary models</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:Tiz5es2fbqcC" target="_blank" rel="noopener" class="pub-title-link">Evaluating fairness without sensitive attributes: A framework using only auxiliary models</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">Z Zhu, Y Yao, <span class="author-self">J Sun</span>, Y Liu, H Li</div>
@@ -1822,7 +1991,7 @@
     <article class="pub-card" data-category="graph" data-highlight="false" data-year="2019">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">2019</span>
-        <h3 class="pub-title">Directed Graph Analysis: Algorithms and Applications</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:abG-DnoFyZgC" target="_blank" rel="noopener" class="pub-title-link">Directed Graph Analysis: Algorithms and Applications</a></h3>
         
       </div>
       <div class="pub-authors"><span class="author-self">J Sun</span></div>
@@ -1841,7 +2010,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2026">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Unlearning of recommendation models</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:fQNAKQ3IYiAC" target="_blank" rel="noopener" class="pub-title-link">Unlearning of recommendation models</a></h3>
         <span class="cite-count mono">2 cites</span>
       </div>
       <div class="pub-authors">SUN Jiankai, X Xu, X Yang, Y Yao, C Wang</div>
@@ -1859,7 +2028,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2026">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data subsampling for recommendation systems</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:vRqMK49ujn8C" target="_blank" rel="noopener" class="pub-title-link">Data subsampling for recommendation systems</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">A Zhang, SUN Jiankai, R Guo, W Taiqing, X Chen</div>
@@ -1877,7 +2046,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data protection method, apparatus, medium and electronic device</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:D_sINldO8mEC" target="_blank" rel="noopener" class="pub-title-link">Data protection method, apparatus, medium and electronic device</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">SUN Jiankai, X Yang, A Zhang, GAO Weihao, J Xie, C Wang</div>
@@ -1895,7 +2064,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Methods, apparatuses, devices and medium for model performance evaluation</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:5ugPr518TE4C" target="_blank" rel="noopener" class="pub-title-link">Methods, apparatuses, devices and medium for model performance evaluation</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">SUN Jiankai, X Yang, C Wang, J Xie, D Wu</div>
@@ -1913,7 +2082,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data processing for release while protecting individual privacy</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:sSrBHYA8nusC" target="_blank" rel="noopener" class="pub-title-link">Data processing for release while protecting individual privacy</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">X Yang, Y Yao, T Liu, J SUN, C Wang, R Wu</div>
@@ -1931,7 +2100,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data protection method, training method and apparatus for network structure, medium, and device</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:eflP2zaiRacC" target="_blank" rel="noopener" class="pub-title-link">Data protection method, training method and apparatus for network structure, medium, and device</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">SUN Jiankai, GAO Weihao</div>
@@ -1949,7 +2118,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Method, apparatus, device and medium for protecting sensitive data</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:eJXPG6dFmWUC" target="_blank" rel="noopener" class="pub-title-link">Method, apparatus, device and medium for protecting sensitive data</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">X Yang, J Xie, Y Yao, C Wang</div>
@@ -1967,7 +2136,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data protection method, apparatus, medium and device</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:5Ul4iDaHHb8C" target="_blank" rel="noopener" class="pub-title-link">Data protection method, apparatus, medium and device</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">SUN Jiankai, GAO Weihao, LIU Xiaobing, LI Runliang</div>
@@ -1985,7 +2154,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Method and apparatus for training item coding model</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:WbkHhVStYXYC" target="_blank" rel="noopener" class="pub-title-link">Method and apparatus for training item coding model</a></h3>
         <span class="cite-count mono">1 cites</span>
       </div>
       <div class="pub-authors">GAO Weihao, FAN Xiangjun, SUN Jiankai, LIU Xiaobing</div>
@@ -2003,7 +2172,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2026">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Method and apparatus for protecting data, and device and medium</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:1qzjygNMrQYC" target="_blank" rel="noopener" class="pub-title-link">Method and apparatus for protecting data, and device and medium</a></h3>
         
       </div>
       <div class="pub-authors">SUN Jiankai, X Yang, Y Yao, J Xie, C Wang</div>
@@ -2021,7 +2190,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Methods, apparatuses, devices and medium for model performance evaluation</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:bnK-pcrLprsC" target="_blank" rel="noopener" class="pub-title-link">Methods, apparatuses, devices and medium for model performance evaluation</a></h3>
         
       </div>
       <div class="pub-authors">SUN Jiankai, X Yang, C Wang, J Xie, D Wu</div>
@@ -2039,7 +2208,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2025">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Model performance evaluating methods, apparatuses, device and storage medium</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:J-pR_7NvFogC" target="_blank" rel="noopener" class="pub-title-link">Model performance evaluating methods, apparatuses, device and storage medium</a></h3>
         
       </div>
       <div class="pub-authors">SUN Jiankai, X Yang, C Wang, J Xie, D Wu</div>
@@ -2057,7 +2226,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Method, apparatus, device, and medium for action execution</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:mvPsJ3kp5DgC" target="_blank" rel="noopener" class="pub-title-link">Method, apparatus, device, and medium for action execution</a></h3>
         
       </div>
       <div class="pub-authors">XU Anran, S Wang, L Chen, S Li, SUN Jiankai, Z ZHENG, F Wu</div>
@@ -2075,7 +2244,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Method and apparatus for data protection, readable medium and electronic device</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:BrmTIyaxlBUC" target="_blank" rel="noopener" class="pub-title-link">Method and apparatus for data protection, readable medium and electronic device</a></h3>
         
       </div>
       <div class="pub-authors">X Yang, SUN Jiankai, GAO Weihao, J Xie, C Wang</div>
@@ -2093,7 +2262,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2024">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Determining online classifier performance via normalizing flows</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:VOx2b1Wkg3QC" target="_blank" rel="noopener" class="pub-title-link">Determining online classifier performance via normalizing flows</a></h3>
         
       </div>
       <div class="pub-authors">X Yang, ZHU Hanlin, T Liu, SUN Jiankai, Y Yao, A Zhang, C Wang</div>
@@ -2111,7 +2280,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Label inference in split learning defenses</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:4fKUyHm3Qg0C" target="_blank" rel="noopener" class="pub-title-link">Label inference in split learning defenses</a></h3>
         
       </div>
       <div class="pub-authors">XIE Shangyu, SUN Jiankai, W Taiqing</div>
@@ -2129,7 +2298,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2023">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Diversifying recommendations by improving embedding generation of a graph neural network model</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:tS2w5q8j5-wC" target="_blank" rel="noopener" class="pub-title-link">Diversifying recommendations by improving embedding generation of a graph neural network model</a></h3>
         
       </div>
       <div class="pub-authors">Y Liangwei, S Wang, Y Tao, SUN Jiankai, W Taiqing</div>
@@ -2147,7 +2316,7 @@
     <article class="pub-card" data-category="patent" data-highlight="false" data-year="2022">
       <div class="pub-header">
         <span class="venue-badge badge-neutral mono">Patent</span>
-        <h3 class="pub-title">Data protection method and apparatus, and server and medium</h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GQ6xw-oAAAAJ&pagesize=100&citation_for_view=GQ6xw-oAAAAJ:K3LRdlH-MEoC" target="_blank" rel="noopener" class="pub-title-link">Data protection method and apparatus, and server and medium</a></h3>
         
       </div>
       <div class="pub-authors">SUN Jiankai, GAO Weihao, LIU Xiaobing</div>
@@ -2174,6 +2343,40 @@
 
   </main>
 
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-meta">
+        <span class="footer-title">Jiankai Sun</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-role">Machine Learning Engineer &amp; Researcher</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-loc">Seattle, WA</span>
+      </div>
+      <div class="footer-links mono">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#vibe-coding">Vibe Coding</a>
+        <a href="#publications">Publications</a>
+        <a href="#opensource">Activity</a>
+        <a href="https://scholar.google.com/citations?user=yftgQ90AAAAJ" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://github.com/sunjiankai" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/sunjiankai" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:sun.cse.osu@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy mono">
+        <span>© 2026 Jiankai Sun · Hosted on Cloudflare Pages · <a href="https://jiankaisun.com" style="color: inherit; text-decoration: underline;">jiankaisun.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back-to-Top Button -->
+  <button id="back-to-top" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
   <!-- BibTeX Toast -->
   <div id="toast" class="toast mono">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2199,6 +2402,9 @@
       currentFilter = filter;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      document.querySelectorAll('.pillar-card').forEach(p => p.classList.remove('active'));
+      const activePillar = document.querySelector(`.pillar-card[onclick*="'${filter}'"]`);
+      if (activePillar) activePillar.classList.add('active');
       applyFilter();
     }
 
@@ -2277,6 +2483,24 @@
       } else {
         noRes.style.display = 'none';
       }
+
+      const countEl = document.getElementById('filter-count');
+      if (countEl) {
+        if (currentSearch.length > 0 || currentFilter !== 'all') {
+          countEl.textContent = `Showing ${visibleCount} of ${cards.length} items`;
+        } else {
+          countEl.textContent = `Showing all ${cards.length} publications & patents`;
+        }
+      }
+    }
+
+    function filterByTag(tag) {
+      const input = document.getElementById('paper-search');
+      input.value = tag;
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      setFilter('all', allBtn);
+      handleSearch();
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function copyBibtex(btn) {
@@ -2320,6 +2544,18 @@
         searchInput.blur();
       }
     });
+
+    // Floating back-to-top button visibility
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('back-to-top');
+      if (btn) {
+        if (window.scrollY > 400) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>

@@ -273,6 +273,8 @@ for p in papers:
     cat = categorize(p)
     cat_counts[cat] = cat_counts.get(cat, 0) + 1
 
+highlight_count = sum(1 for p in papers if links_map.get(p["title"].lower().strip(), {}).get("highlight", False) or p.get("cites", 0) >= 40)
+
 pub_cards_html = []
 patent_cards_html = []
 
@@ -326,10 +328,17 @@ for idx, p in enumerate(papers):
     # TL;DR note if present
     tldr_html = f'<div class="pub-tldr"><span class="tldr-badge mono">TL;DR:</span> {html.escape(meta["tldr"])}</div>' if meta.get("tldr") else ''
 
-    # Minimal keyword tags (curated, max 3)
+    # Title link (primary destination: arXiv > PDF > Scholar > Code)
+    primary_link = meta.get("arxiv") or meta.get("pdf") or p.get("scholar_link") or meta.get("code")
+    if primary_link:
+        title_html = f'<a href="{primary_link}" target="_blank" rel="noopener" class="pub-title-link">{html.escape(p["title"])}</a>'
+    else:
+        title_html = html.escape(p['title'])
+
+    # Minimal keyword tags (curated, max 3) - Clickable for instant filtering
     kw_chips = []
     for kw in meta.get("keywords", [])[:3]:
-        kw_chips.append(f'<span class="paper-kw mono">#{kw}</span>')
+        kw_chips.append(f'<button type="button" class="paper-kw mono" onclick="filterByTag(\'{html.escape(kw)}\')" title="Filter by #{html.escape(kw)}">#{kw}</button>')
     kw_html = f'<div class="paper-keywords">{"".join(kw_chips)}</div>' if kw_chips else ''
 
     # Clean, elegant card layout without excessive inner borders
@@ -337,7 +346,7 @@ for idx, p in enumerate(papers):
     <article class="pub-card" data-category="{cat}" data-highlight="{'true' if is_highlight else 'false'}" data-year="{p['year']}">
       <div class="pub-header">
         <span class="venue-badge {badge_class} mono">{badge}</span>
-        <h3 class="pub-title">{html.escape(p['title'])}</h3>
+        <h3 class="pub-title">{title_html}</h3>
         {cites_badge}
       </div>
       <div class="pub-authors">{format_authors(html.escape(p['authors']))}</div>
@@ -552,7 +561,7 @@ full_html = f"""<!DOCTYPE html>
       width: 100%;
     }}
     .hero-title h1 {{
-      font-size: 42px;
+      font-size: 44px;
       font-weight: 700;
       letter-spacing: -0.025em;
       color: #0c0a09;
@@ -561,9 +570,10 @@ full_html = f"""<!DOCTYPE html>
     .hero-subtitle {{
       font-size: 16px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 5px;
       font-weight: 400;
       max-width: 62ch;
+      line-height: 1.5;
       margin-left: auto;
       margin-right: auto;
     }}
@@ -612,7 +622,7 @@ full_html = f"""<!DOCTYPE html>
       color: #292524;
       max-width: 66ch;
       margin: 0 auto;
-      text-align: center;
+      text-align: left;
     }}
     .bio-prose p {{
       margin-bottom: 12px;
@@ -630,7 +640,7 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
       padding-top: 10px;
       width: 100%;
     }}
@@ -639,15 +649,17 @@ full_html = f"""<!DOCTYPE html>
       flex-direction: column;
     }}
     .metric-value {{
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       color: #0c0a09;
       line-height: 1.1;
+      font-variant-numeric: tabular-nums;
     }}
     .metric-label {{
       font-size: 12px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: var(--text-sub);
       margin-top: 3px;
     }}
@@ -702,6 +714,11 @@ full_html = f"""<!DOCTYPE html>
       border-color: #0369a1;
       box-shadow: 0 4px 16px rgba(3, 105, 161, 0.08);
       transform: translateY(-2px);
+    }}
+    .pillar-card.active {{
+      border-color: #0369a1;
+      background: #f0f9ff;
+      box-shadow: 0 0 0 1.5px #0369a1;
     }}
     .pillar-index {{
       font-size: 11px;
@@ -830,13 +847,25 @@ full_html = f"""<!DOCTYPE html>
       font-size: 11.5px;
       color: var(--text-sub);
       margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }}
+    .vibe-status::before {{
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      flex-shrink: 0;
     }}
 
     /* Two Column Layout Grid */
     .layout-grid {{
       display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 32px;
+      grid-template-columns: 360px 1fr;
+      gap: 36px;
       align-items: start;
     }}
 
@@ -844,7 +873,9 @@ full_html = f"""<!DOCTYPE html>
     .sidebar-col {{
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
+      position: sticky;
+      top: 68px;
     }}
     .sidebar-block {{
       display: flex;
@@ -967,6 +998,18 @@ full_html = f"""<!DOCTYPE html>
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 16px 20px;
+    }}
+    .filter-header {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: -2px;
+    }}
+    .filter-count {{
+      font-size: 12px;
+      color: var(--text-sub);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }}
     .search-wrapper {{
       position: relative;
@@ -1124,6 +1167,17 @@ full_html = f"""<!DOCTYPE html>
       line-height: 1.4;
       max-width: 78ch;
     }}
+    .pub-title-link {{
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }}
+    .pub-title-link:hover {{
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: #bae6fd;
+      text-underline-offset: 3px;
+    }}
     .pub-authors {{
       font-size: 13.5px;
       color: var(--text-muted);
@@ -1139,8 +1193,9 @@ full_html = f"""<!DOCTYPE html>
     /* Natural publication venue font (no forced long mono lines) */
     .pub-venue {{
       font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.4;
+      color: #64748b;
+      font-style: italic;
+      line-height: 1.45;
       max-width: 82ch;
     }}
     /* Clean Editorial TL;DR */
@@ -1170,8 +1225,18 @@ full_html = f"""<!DOCTYPE html>
       color: #0369a1;
       background: #f0f9ff;
       border: 1px solid #bae6fd;
-      padding: 1px 6px;
-      border-radius: 3px;
+      padding: 1px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      line-height: 1.5;
+    }}
+    .paper-kw:hover {{
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #0284c7;
+      transform: translateY(-1px);
     }}
     .pub-actions {{
       display: flex;
@@ -1224,23 +1289,23 @@ full_html = f"""<!DOCTYPE html>
       flex-shrink: 0;
     }}
 
-    /* Toast Notification */
+    /* Toast Notification (Centered Bottom Pill) */
     .toast {{
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 28px;
+      left: 50%;
+      transform: translate(-50%, 12px);
       background: #0f172a;
       color: #ffffff;
-      padding: 9px 16px;
-      border-radius: var(--radius-sm);
+      padding: 9px 18px;
+      border-radius: 9999px;
       font-size: 12.5px;
       font-weight: 500;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.24);
       opacity: 0;
       pointer-events: none;
-      transform: translateY(8px);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 999;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1248,7 +1313,100 @@ full_html = f"""<!DOCTYPE html>
     .toast.show {{
       opacity: 1;
       pointer-events: auto;
+      transform: translate(-50%, 0);
+    }}
+
+    /* Floating Back-to-Top Button */
+    .back-to-top {{
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 90;
+    }}
+    .back-to-top.show {{
+      opacity: 1;
+      pointer-events: auto;
       transform: translateY(0);
+    }}
+    .back-to-top:hover {{
+      background: #f8fafc;
+      color: var(--primary);
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+      transform: translateY(-2px);
+    }}
+    .back-to-top:active {{
+      transform: translateY(0) scale(0.96);
+    }}
+
+    /* Site Footer */
+    .site-footer {{
+      margin-top: 56px;
+      border-top: 1px solid var(--border);
+      padding: 36px 0 48px;
+      color: var(--text-sub);
+      font-size: 13px;
+      width: 100%;
+    }}
+    .footer-inner {{
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+    }}
+    .footer-meta {{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }}
+    .footer-title {{
+      font-weight: 600;
+      color: var(--text-main);
+    }}
+    .footer-sep {{
+      color: #cbd5e1;
+    }}
+    .footer-links {{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      font-size: 12.5px;
+    }}
+    .footer-links a {{
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }}
+    .footer-links a:hover {{
+      color: var(--primary);
+    }}
+    .footer-copy {{
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 4px;
     }}
 
     /* Responsive Breakpoints */
@@ -1263,6 +1421,9 @@ full_html = f"""<!DOCTYPE html>
     @media (max-width: 960px) {{
       .layout-grid {{
         grid-template-columns: 1fr;
+      }}
+      .sidebar-col {{
+        position: static;
       }}
       .metrics-row {{
         gap: 16px;
@@ -1296,18 +1457,33 @@ full_html = f"""<!DOCTYPE html>
         display: none;
       }}
       .container {{
-        padding: 20px 14px 48px 14px;
+        padding: 20px 16px 48px 16px;
         gap: 36px;
       }}
       .hero-title h1 {{
-        font-size: 30px;
+        font-size: 32px;
+      }}
+      .bio-prose {{
+        text-align: left;
+        font-size: 14.5px;
+        line-height: 1.65;
       }}
       .metrics-row {{
-        flex-wrap: wrap;
-        gap: 14px 24px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 20px;
+        max-width: 320px;
+        margin: 0 auto;
+      }}
+      .metric-item {{
+        align-items: center;
+        text-align: center;
       }}
       .metric-value {{
-        font-size: 20px;
+        font-size: 22px;
+      }}
+      .metric-divider {{
+        display: none;
       }}
       .pillars-grid {{
         grid-template-columns: 1fr;
@@ -1589,10 +1765,8 @@ full_html = f"""<!DOCTYPE html>
           </div>
 
           <!-- Featured Open Source Repos -->
-          <div class="repo-items">{repo_cards_html}
-          </div>
-              <div class="repo-desc">Cold-start question routing with factorization machines (ECML-PKDD 2018).</div>
-            </a>
+          <div class="repo-items">
+            {repo_cards_html}
           </div>
         </div>
 
@@ -1603,6 +1777,10 @@ full_html = f"""<!DOCTYPE html>
         
         <!-- Filter Controls -->
         <div class="filter-bar">
+          <div class="filter-header">
+            <span class="filter-count mono" id="filter-count">Showing all {len(papers)} publications &amp; patents</span>
+          </div>
+
           <div class="search-wrapper">
             <span class="search-icon">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -1614,7 +1792,7 @@ full_html = f"""<!DOCTYPE html>
 
           <div class="filter-tabs mono" id="filter-tabs">
             <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All ({len(papers)})</button>
-            <button class="filter-btn" data-filter="highlight" onclick="setFilter('highlight', this)">Selected Highlights</button>
+            <button class="filter-btn" data-filter="highlight" onclick="setFilter('highlight', this)">Selected Highlights ({highlight_count})</button>
             <button class="filter-btn" data-filter="privacy" onclick="setFilter('privacy', this)">Privacy & Federated ({cat_counts.get('privacy', 0)})</button>
             <button class="filter-btn" data-filter="recsys" onclick="setFilter('recsys', this)">Recommender Systems ({cat_counts.get('recsys', 0)})</button>
             <button class="filter-btn" data-filter="graph" onclick="setFilter('graph', this)">Graph Learning ({cat_counts.get('graph', 0)})</button>
@@ -1638,6 +1816,40 @@ full_html = f"""<!DOCTYPE html>
     </div>
 
   </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-meta">
+        <span class="footer-title">Jiankai Sun</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-role">Machine Learning Engineer &amp; Researcher</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-loc">Seattle, WA</span>
+      </div>
+      <div class="footer-links mono">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#vibe-coding">Vibe Coding</a>
+        <a href="#publications">Publications</a>
+        <a href="#opensource">Activity</a>
+        <a href="https://scholar.google.com/citations?user=yftgQ90AAAAJ" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://github.com/sunjiankai" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/sunjiankai" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:sun.cse.osu@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy mono">
+        <span>© {datetime.now().year} Jiankai Sun · Hosted on Cloudflare Pages · <a href="https://jiankaisun.com" style="color: inherit; text-decoration: underline;">jiankaisun.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back-to-Top Button -->
+  <button id="back-to-top" class="back-to-top" onclick="window.scrollTo({{top: 0, behavior: 'smooth'}})" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <!-- BibTeX Toast -->
   <div id="toast" class="toast mono">
@@ -1664,6 +1876,9 @@ full_html = f"""<!DOCTYPE html>
       currentFilter = filter;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      document.querySelectorAll('.pillar-card').forEach(p => p.classList.remove('active'));
+      const activePillar = document.querySelector(`.pillar-card[onclick*="'${{filter}}'"]`);
+      if (activePillar) activePillar.classList.add('active');
       applyFilter();
     }}
 
@@ -1742,6 +1957,24 @@ full_html = f"""<!DOCTYPE html>
       }} else {{
         noRes.style.display = 'none';
       }}
+
+      const countEl = document.getElementById('filter-count');
+      if (countEl) {{
+        if (currentSearch.length > 0 || currentFilter !== 'all') {{
+          countEl.textContent = `Showing ${{visibleCount}} of ${{cards.length}} items`;
+        }} else {{
+          countEl.textContent = `Showing all ${{cards.length}} publications & patents`;
+        }}
+      }}
+    }}
+
+    function filterByTag(tag) {{
+      const input = document.getElementById('paper-search');
+      input.value = tag;
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      setFilter('all', allBtn);
+      handleSearch();
+      input.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
     }}
 
     function copyBibtex(btn) {{
@@ -1785,6 +2018,18 @@ full_html = f"""<!DOCTYPE html>
         searchInput.blur();
       }}
     }});
+
+    // Floating back-to-top button visibility
+    window.addEventListener('scroll', () => {{
+      const btn = document.getElementById('back-to-top');
+      if (btn) {{
+        if (window.scrollY > 400) {{
+          btn.classList.add('show');
+        }} else {{
+          btn.classList.remove('show');
+        }}
+      }}
+    }}, {{ passive: true }});
   </script>
 </body>
 </html>
