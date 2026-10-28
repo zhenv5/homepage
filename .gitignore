@@ -4,3 +4,4 @@
 .oil-ui/shots/
 .oil-ui/homepage_redesign/
 node_modules/
+dist/

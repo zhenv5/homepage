@@ -1,5 +1,5 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "sunjiankai-homepage",
-  "pages_build_output_dir": "."
+  "name": "jiankaisun-homepage",
+  "pages_build_output_dir": "dist"
 }
