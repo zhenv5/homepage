@@ -355,6 +355,35 @@ for idx, p in enumerate(papers):
 
 print(f"Generated {len(pub_cards_html)} publications and {len(patent_cards_html)} patents.")
 
+# Featured repos; star counts are fetched live from the GitHub API at build time
+FEATURED_REPOS = [
+    ("zhenv5/atp", "zhenv5/atp", "Directed graph embedding preserving asymmetric transitivity (AAAI 2019)."),
+    ("zhenv5/breaking_cycles_in_noisy_hierarchies", "breaking_cycles_in_noisy_hierarchies", "Cycle breaking algorithms in noisy social and web hierarchies (WebSci 2017)."),
+    ("OscarcarLi/label-protection", "OscarcarLi/label-protection", "Label leakage and protection in two-party split learning (ICLR 2022)."),
+]
+
+def fetch_stars(full_name):
+    try:
+        out = subprocess.run(['gh', 'api', f'repos/{full_name}', '--jq', '.stargazers_count'],
+                             capture_output=True, text=True, timeout=20)
+        if out.returncode == 0:
+            return int(out.stdout.strip())
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        pass
+    import urllib.request
+    with urllib.request.urlopen(f'https://api.github.com/repos/{full_name}', timeout=20) as r:
+        return json.load(r)['stargazers_count']
+
+featured = sorted(((fetch_stars(r), r, label, desc) for r, label, desc in FEATURED_REPOS), reverse=True)
+repo_cards_html = "".join(f"""
+            <a href="https://github.com/{r}" target="_blank" rel="noopener" class="repo-card">
+              <div class="repo-name mono">
+                <span>{label}</span>
+                <span>★ {stars}</span>
+              </div>
+              <div class="repo-desc">{desc}</div>
+            </a>""" for stars, r, label, desc in featured)
+
 full_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1560,26 +1589,8 @@ full_html = f"""<!DOCTYPE html>
           </div>
 
           <!-- Featured Open Source Repos -->
-          <div class="repo-items">
-            <a href="https://github.com/zhenv5/atp" target="_blank" rel="noopener" class="repo-card">
-              <div class="repo-name mono">
-                <span>zhenv5/atp</span>
-                <span>★ 38</span>
-              </div>
-              <div class="repo-desc">Directed graph embedding preserving asymmetric transitivity (AAAI 2019).</div>
-            </a>
-            <a href="https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies" target="_blank" rel="noopener" class="repo-card">
-              <div class="repo-name mono">
-                <span>breaking_cycles_in_noisy_hierarchies</span>
-                <span>★ 26</span>
-              </div>
-              <div class="repo-desc">Cycle breaking algorithms in noisy social and web hierarchies (WebSci 2017).</div>
-            </a>
-            <a href="https://github.com/zhenv5/ColdRoute" target="_blank" rel="noopener" class="repo-card">
-              <div class="repo-name mono">
-                <span>zhenv5/ColdRoute</span>
-                <span>★ 19</span>
-              </div>
+          <div class="repo-items">{repo_cards_html}
+          </div>
               <div class="repo-desc">Cold-start question routing with factorization machines (ECML-PKDD 2018).</div>
             </a>
           </div>
