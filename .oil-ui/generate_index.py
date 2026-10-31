@@ -486,6 +486,15 @@ full_html = f"""<!DOCTYPE html>
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }}
+    .nav-brand.visible {{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }}
     .brand-title {{
       font-size: 15px;
@@ -713,6 +722,7 @@ full_html = f"""<!DOCTYPE html>
       color: inherit;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+      height: 100%;
     }}
     .pillar-card:hover {{
       border-color: #0369a1;
@@ -749,7 +759,7 @@ full_html = f"""<!DOCTYPE html>
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.5;
-      flex: 1;
+      flex: 1 1 auto;
     }}
     .pillar-action {{
       font-size: 12px;
@@ -758,7 +768,8 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       align-items: center;
       gap: 4px;
-      margin-top: 4px;
+      margin-top: auto;
+      padding-top: 8px;
     }}
 
     /* Vibe Coding & Indie Software Section */
@@ -1173,9 +1184,22 @@ full_html = f"""<!DOCTYPE html>
       flex-shrink: 0;
     }}
     .pub-card[data-highlight="true"] {{
-      border-color: #cbd5e1;
-      background: linear-gradient(180deg, #ffffff 0%, #fcfdfe 100%);
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+      border: 1px solid #bae6fd;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      box-shadow: 0 1px 6px rgba(3, 105, 161, 0.04);
+    }}
+    @keyframes pubCardFade {{
+      from {{
+        opacity: 0;
+        transform: translateY(3px);
+      }}
+      to {{
+        opacity: 1;
+        transform: translateY(0);
+      }}
+    }}
+    .pub-card.is-visible {{
+      animation: pubCardFade 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }}
     /* Unified Scholarly Badge Styles */
     .badge-tier {{
@@ -1501,14 +1525,20 @@ full_html = f"""<!DOCTYPE html>
         font-size: 32px;
       }}
       .social-pills {{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px 10px;
-        max-width: 340px;
+        max-width: 330px;
         margin: 0 auto;
-        justify-content: center;
       }}
       .social-pill {{
-        font-size: 12px;
-        padding: 5px 11px;
+        font-size: 11.5px;
+        padding: 6px 10px;
+        justify-content: center;
+        width: 100%;
+      }}
+      .social-pill:first-child {{
+        grid-column: 1 / -1;
       }}
       .bio-prose {{
         text-align: left;
@@ -1646,7 +1676,7 @@ full_html = f"""<!DOCTYPE html>
       <div class="section-header-block">
         <div>
           <h2 class="section-headline serif">Core Research Themes</h2>
-          <p class="section-subtext">Scientific and algorithmic focus areas. Click any theme to explore corresponding publications.</p>
+          <p class="section-subtext">Scientific and algorithmic focus areas with corresponding publications.</p>
         </div>
       </div>
 
@@ -1996,11 +2026,11 @@ full_html = f"""<!DOCTYPE html>
 
         if (matchesCat && matchesSearch) {{
           card.style.display = 'flex';
-          card.style.opacity = '1';
+          card.classList.add('is-visible');
           visibleCount++;
         }} else {{
           card.style.display = 'none';
-          card.style.opacity = '0';
+          card.classList.remove('is-visible');
         }}
       }});
 
@@ -2072,7 +2102,7 @@ full_html = f"""<!DOCTYPE html>
       }}
     }});
 
-    // Floating back-to-top button visibility
+    // Floating back-to-top button & nav-brand visibility
     window.addEventListener('scroll', () => {{
       const btn = document.getElementById('back-to-top');
       if (btn) {{
@@ -2080,6 +2110,14 @@ full_html = f"""<!DOCTYPE html>
           btn.classList.add('show');
         }} else {{
           btn.classList.remove('show');
+        }}
+      }}
+      const brand = document.querySelector('.nav-brand');
+      if (brand) {{
+        if (window.scrollY > 150) {{
+          brand.classList.add('visible');
+        }} else {{
+          brand.classList.remove('visible');
         }}
       }}
     }}, {{ passive: true }});
