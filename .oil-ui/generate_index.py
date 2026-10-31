@@ -128,47 +128,47 @@ links_map = {
         "code": "https://github.com/OscarcarLi/label-protection",
         "venue_badge": "ICLR 2022",
         "keywords": ["Split Learning", "Label Leakage", "Gradient Defense"],
-        "tldr": "Demonstrates gradient inversion label leakage in vertical split learning and designs the Marvell noise defense mechanism to preserve privacy without degrading utility.",
+        "tldr": "Shows how one party can recover private labels during split training, and proposes Marvell, a noise perturbation that minimizes worst-case leakage.",
         "highlight": True
     },
     "dpauc: differentially private auc computation in federated learning": {
-        "arxiv": "https://arxiv.org/abs/2211.10486",
+        "arxiv": "https://arxiv.org/abs/2208.12294",
         "code": "https://github.com/bytedance/fedlearner/tree/master/example/privacy/DPAUC",
         "venue_badge": "AAAI 2023",
-        "keywords": ["Federated Learning", "Differential Privacy", "AUC Optimization"],
-        "tldr": "Formulates differentially private pairwise ranking loss optimization with DP-SGD for cross-silo advertising conversion.",
+        "keywords": ["Federated Learning", "Differential Privacy", "AUC Evaluation"],
+        "tldr": "An evaluation algorithm that accurately computes AUC under label differential privacy in federated learning.",
         "highlight": True
     },
     "privacy preserving conversion modeling in data clean room": {
         "venue_badge": "RecSys 2024",
         "keywords": ["Data Clean Room", "Privacy-Preserving ML", "Conversion Modeling"],
-        "tldr": "Architects an end-to-end framework enabling multi-party ad attribution and CTR modeling within secure clean rooms.",
+        "tldr": "Trains CVR models in data clean rooms using batch-level aggregated gradients, compressed adapter-based fine-tuning, and de-biasing under label differential privacy.",
         "highlight": True
     },
     "decoupled entity representation learning for pinterest ads ranking": {
         "venue_badge": "RecSys 2025",
         "keywords": ["Ads Ranking", "Decoupled Representation", "Large-Scale RecSys"],
-        "tldr": "Decouples query and pin entity embeddings to scale real-time retrieval across billions of candidates in Pinterest Ads.",
+        "tldr": "Builds user and Pin embeddings in upstream models, refreshed asynchronously and reused as features across downstream ad retrieval and CTR/CVR ranking in production at Pinterest.",
         "highlight": True
     },
     "leveraging print debugging to improve code generation in large language models": {
         "arxiv": "https://arxiv.org/abs/2401.05319",
         "venue_badge": "arXiv 2024",
         "keywords": ["LLM Code Generation", "Print Debugging", "Self-Refinement"],
-        "tldr": "Proposes LDB (Large Language Model Debugger), enabling LLMs to segment, trace, and verify variable execution states like human developers.",
+        "tldr": "Guides LLMs to debug generated code with print statements and log analysis, outperforming rubber-duck debugging on easy and medium LeetCode problems with GPT-4.",
         "highlight": True
     },
     "weak proxies are sufficient and preferable for fairness with missing sensitive attributes": {
-        "arxiv": "https://arxiv.org/abs/2306.03859",
+        "arxiv": "https://arxiv.org/abs/2210.03175",
         "venue_badge": "ICML 2023",
         "keywords": ["AI Fairness", "Weak Proxies", "Sensitive Attributes"],
-        "tldr": "Proves that weak proxy representations achieve Pareto-optimal algorithmic fairness when sensitive attributes are unobserved.",
+        "tldr": "Shows off-the-shelf proxies can mislead fairness measurement, and gives an algorithm that measures fairness provably accurately using three weak proxies.",
         "highlight": True
     },
     "pslf: defending against label leakage in split learning": {
         "venue_badge": "CIKM 2023",
-        "keywords": ["Split Learning", "Adversarial Defense", "Feature Obfuscation"],
-        "tldr": "Proposes perturbation mechanisms for intermediate representations to neutralize gradient inversion attacks in split networks.",
+        "keywords": ["Split Learning", "Label Differential Privacy", "Randomized Response"],
+        "tldr": "Shares only gradients computed on differentially private flipped labels, with an extra sub-model trained on true labels to preserve prediction accuracy.",
         "highlight": True
     },
     "dgrec: graph neural network for recommendation with diversified embedding generation": {
@@ -176,20 +176,20 @@ links_map = {
         "code": "https://github.com/YangLiangwei/DGRec",
         "venue_badge": "WSDM 2023",
         "keywords": ["Graph Neural Networks", "Embedding Diversification", "RecSys"],
-        "tldr": "Diversified graph embedding generation for mitigating filter bubbles in user-item recommendation graphs.",
+        "tldr": "Diversifies GNN recommenders through submodular neighbor selection, layer attention, and loss reweighting for long-tail categories.",
         "highlight": True
     },
     "graph-based model-agnostic data subsampling for recommendation systems": {
         "venue_badge": "KDD 2023",
         "keywords": ["Graph Subsampling", "Efficiency", "Recommendation Scale"],
-        "tldr": "Graph topological subsampling enabling extreme throughput and training speedup on massive recommender datasets.",
+        "tldr": "Estimates interaction importance from user-item graph topology via graph conductance and propagation, with no pre-trained pilot model required.",
         "highlight": True
     },
     "netflix and forget: efficient and exact machine unlearning from bi-linear recommendations": {
         "arxiv": "https://arxiv.org/abs/2302.06676",
         "venue_badge": "NeurIPS W 2022",
         "keywords": ["Machine Unlearning", "Recommendation Privacy", "Bi-linear Models"],
-        "tldr": "Provable exact machine unlearning algorithm removing user interaction data from bilinear recommendation models with minimal retraining.",
+        "tldr": "Exact machine unlearning for bi-linear recommenders: Unlearn-ALS removes user data without retraining or model degradation.",
         "highlight": True
     },
     "defending against reconstruction attack in vertical federated learning": {
@@ -211,17 +211,16 @@ links_map = {
         "slides": "documents/Slides_AAAI_2019_ATP.pdf",
         "venue_badge": "AAAI 2019",
         "keywords": ["Directed Graph Embedding", "Asymmetric Transitivity", "Non-linear Mapping"],
-        "tldr": "Preserves high-order directed reachability and transitivity via asymmetric non-linear dual-vector projections.",
+        "tldr": "Embeds directed graphs while preserving asymmetric transitivity, using graph hierarchy and reachability to route questions in CQA sites.",
         "highlight": True
     },
     "breaking cycles in noisy hierarchies": {
-        "arxiv": "https://arxiv.org/abs/1703.08100",
         "code": "https://github.com/zhenv5/breaking_cycles_in_noisy_hierarchies",
         "pdf": "documents/Paper_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf",
-        "slides": "documents/Slides_WebSci_2017_Breaking_Cycles_in_Noisy_Hierarchies.pdf",
+        "slides": "documents/Slides_WebSci_17_Breaking_Cycles_in_Noisy_Hierarchies.pdf",
         "venue_badge": "WebSci 2017",
         "keywords": ["Noisy Hierarchies", "Cycle Breaking", "Social Graphs"],
-        "tldr": "Approximation algorithm resolving minimal feedback arc sets in web and noisy social hierarchies."
+        "tldr": "Removes cycles from noisy taxonomy graphs by inferring hierarchy with TrueSkill and social agony, preserving structure while deleting few edges."
     },
     "coldroute: effective routing of cold questions in stack exchange sites: j. sun et al.": {
         "arxiv": "https://arxiv.org/abs/1807.00462",
@@ -407,6 +406,14 @@ full_html = f"""<!DOCTYPE html>
   <meta property="og:title" content="Jiankai Sun — Machine Learning Engineer & Researcher">
   <meta property="og:description" content="Machine Learning Engineer at Pinterest · Ex-ByteDance AML-US · Ph.D. in CS @ The Ohio State University">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://jiankaisun.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jiankaisun.com/assets/og-image.png">
+  <link rel="icon" href="assets/favicon.ico" sizes="48x48">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="canonical" href="https://jiankaisun.com/">
   <meta property="og:url" content="https://jiankaisun.com/">
 
@@ -495,6 +502,9 @@ full_html = f"""<!DOCTYPE html>
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
+    }}
+    .brand-logo {{
+      display: block;
     }}
     .brand-title {{
       font-size: 15px;
@@ -1579,6 +1589,7 @@ full_html = f"""<!DOCTYPE html>
   <!-- Compact Sticky Utility Header -->
   <header class="utility-header">
     <a href="#" class="nav-brand">
+      <img src="assets/logo.svg" alt="" width="24" height="24" class="brand-logo">
       <span class="brand-title">Jiankai Sun</span>
       <span class="brand-chip mono">AI / Systems</span>
     </a>
@@ -1916,9 +1927,9 @@ full_html = f"""<!DOCTYPE html>
         <a href="#vibe-coding">Vibe Coding</a>
         <a href="#publications">Publications</a>
         <a href="#opensource">Activity</a>
-        <a href="https://scholar.google.com/citations?user=yftgQ90AAAAJ" target="_blank" rel="noopener">Scholar</a>
-        <a href="https://github.com/sunjiankai" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/sunjiankai" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=GQ6xw-oAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://github.com/zhenv5" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/jiankaisun/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:sun.cse.osu@gmail.com">Email</a>
       </div>
       <div class="footer-copy mono">
