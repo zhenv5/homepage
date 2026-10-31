@@ -10,6 +10,10 @@ import html
 with open("/Users/jiankai/Library/CloudStorage/Dropbox/Codes/homepage/.oil-ui/papers.json", "r", encoding="utf-8") as f:
     papers = json.load(f)
 
+# Patents are not listed; "Evaluating fairness..." is an earlier version of Weak Proxies
+papers = [p for p in papers if "Patent" not in p["venue"]
+          and not p["title"].lower().startswith("evaluating fairness without sensitive attributes")]
+
 # Generate Overall Activity Heatmap SVG (including private & public repos)
 def generate_overall_heatmap(svg_path="/Users/jiankai/Library/CloudStorage/Dropbox/Codes/homepage/assets/github-heatmap.svg"):
     base = '/Users/jiankai/Library/CloudStorage/Dropbox/Codes'
@@ -110,8 +114,6 @@ def categorize(p):
     title = p["title"].lower()
     venue = p["venue"].lower()
     
-    if "patent" in venue or "patent" in title:
-        return "patent"
     if any(k in title for k in ["split learning", "federated", "differential privacy", "private", "privacy", "protection", "leakage", "clean room", "unlearning"]):
         return "privacy"
     if any(k in title for k in ["code generation", "language model", "llm", "print debugging", "fairness"]):
@@ -246,18 +248,12 @@ links_map = {
     }
 }
 
+# Curated from Crossref, OpenAlex and arXiv; a missing entry fails the build
+with open("/Users/jiankai/Library/CloudStorage/Dropbox/Codes/homepage/.oil-ui/bibtex.json", "r", encoding="utf-8") as f:
+    bibtex_entries = json.load(f)
+
 def generate_bibtex(p):
-    words = [w for w in re.sub(r'[^a-zA-Z0-9 ]', '', p["title"]).split() if w.lower() not in ["a", "an", "the", "in", "on", "for"]]
-    prefix = words[0].lower() if words else "paper"
-    key = f"{prefix}{p['year'] or '2024'}"
-    authors_clean = p["authors"].replace("…", "and others")
-    v_clean = p["venue"].split(',')[0].strip() or "Conference / Journal"
-    return f"""@article{{{key},
-  title={{{p['title']}}},
-  author={{{authors_clean}}},
-  journal={{{v_clean}}},
-  year={{{p['year'] or '2024'}}}
-}}"""
+    return bibtex_entries[f"{p['title']}|{p['venue']}"]
 
 def format_authors(authors_str):
     res = authors_str
@@ -267,7 +263,7 @@ def format_authors(authors_str):
     return res
 
 # Count category totals for pillars
-cat_counts = {"privacy": 0, "recsys": 0, "graph": 0, "llm": 0, "patent": 0, "other": 0}
+cat_counts = {"privacy": 0, "recsys": 0, "graph": 0, "llm": 0, "other": 0}
 for p in papers:
     cat = categorize(p)
     cat_counts[cat] = cat_counts.get(cat, 0) + 1
@@ -275,7 +271,6 @@ for p in papers:
 highlight_count = sum(1 for p in papers if links_map.get(p["title"].lower().strip(), {}).get("highlight", False) or p.get("cites", 0) >= 40)
 
 pub_cards_html = []
-patent_cards_html = []
 
 for idx, p in enumerate(papers):
     title_lower = p["title"].lower().strip()
@@ -284,9 +279,7 @@ for idx, p in enumerate(papers):
     
     badge = meta.get("venue_badge")
     if not badge:
-        if cat == "patent":
-            badge = "Patent"
-        elif p["year"]:
+        if p["year"]:
             badge = f"{p['year']}"
         else:
             badge = "Research"
@@ -359,12 +352,9 @@ for idx, p in enumerate(papers):
     </article>
     """
     
-    if cat == "patent":
-        patent_cards_html.append(card_html)
-    else:
-        pub_cards_html.append(card_html)
+    pub_cards_html.append(card_html)
 
-print(f"Generated {len(pub_cards_html)} publications and {len(patent_cards_html)} patents.")
+print(f"Generated {len(pub_cards_html)} publications.")
 
 # Featured repos; star counts are fetched live from the GitHub API at build time
 FEATURED_REPOS = [
@@ -867,23 +857,6 @@ full_html = f"""<!DOCTYPE html>
     .vibe-btn:hover {{
       background: #e0f2fe;
       color: var(--primary-hover);
-    }}
-    .vibe-status {{
-      font-size: 11.5px;
-      color: var(--text-sub);
-      margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }}
-    .vibe-status::before {{
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10b981;
-      display: inline-block;
-      flex-shrink: 0;
     }}
 
     /* Two Column Layout Grid */
@@ -1654,7 +1627,7 @@ full_html = f"""<!DOCTYPE html>
           <strong>Privacy-Preserving Machine Learning</strong> (Federated Learning, Split Learning, Data Clean Rooms), 
           <strong>Large-Scale Recommender Systems</strong> (Ads ranking, decoupled representation learning, retrieval), 
           <strong>Graph Representation Learning</strong>, and 
-          <strong>Large Language Models & Alignment</strong> (code generation, proxy fairness). 
+          <strong>Large Language Models & Responsible AI</strong> (code generation, proxy fairness). 
           Outside of work, I love <strong>vibe coding</strong> indie mobile apps, traditional board games, and local-first utilities.
         </p>
       </div>
@@ -1676,8 +1649,8 @@ full_html = f"""<!DOCTYPE html>
         </div>
         <div class="metric-divider"></div>
         <div class="metric-item">
-          <div class="metric-value">50+</div>
-          <div class="metric-label">Publications & Patents</div>
+          <div class="metric-value">{len(papers)}</div>
+          <div class="metric-label">Publications</div>
         </div>
       </div>
     </section>
@@ -1737,7 +1710,7 @@ full_html = f"""<!DOCTYPE html>
             <span>04 / LLMS</span>
             <span class="pillar-count">{cat_counts.get('llm', 0)} papers</span>
           </div>
-          <h3 class="pillar-title">LLMs & AI Alignment</h3>
+          <h3 class="pillar-title">LLMs & Responsible AI</h3>
           <p class="pillar-desc">
             Improving LLM code generation through print debugging, proxy fairness with missing sensitive attributes, and self-refinement.
           </p>
@@ -1763,7 +1736,7 @@ full_html = f"""<!DOCTYPE html>
             <span class="vibe-category mono">Game Suite</span>
           </div>
           <p class="vibe-desc">
-            Traditional folk board game suite (Ou-Zi Qi, Mi-Zi Qi, Xia-Shi Qi, Fang Qi). Zero-latency canvas rendering, offline AI engine, and interactive rules.
+            Traditional Folk Board Games
           </p>
           <div class="vibe-tags mono">
             <span class="vibe-tag">iOS App</span>
@@ -1772,7 +1745,6 @@ full_html = f"""<!DOCTYPE html>
           </div>
           <div class="vibe-footer">
             <a href="https://folkboardgames.com" target="_blank" rel="noopener" class="vibe-btn mono">folkboardgames.com ↗</a>
-            <span class="vibe-status mono">Active Development</span>
           </div>
         </div>
 
@@ -1783,7 +1755,7 @@ full_html = f"""<!DOCTYPE html>
             <span class="vibe-category mono">iOS App</span>
           </div>
           <p class="vibe-desc">
-            Baby solids & allergy tracker designed with Swift & SwiftUI. Local-first architecture, zero analytics tracking, clear pediatric timeline, and clean reactions journal.
+            Baby Solid Foods Tracker
           </p>
           <div class="vibe-tags mono">
             <span class="vibe-tag">SwiftUI</span>
@@ -1792,7 +1764,6 @@ full_html = f"""<!DOCTYPE html>
           </div>
           <div class="vibe-footer">
             <a href="https://tinytastebook.com" target="_blank" rel="noopener" class="vibe-btn mono">tinytastebook.com ↗</a>
-            <span class="vibe-status mono">iOS 17+ Native</span>
           </div>
         </div>
 
@@ -1803,16 +1774,13 @@ full_html = f"""<!DOCTYPE html>
             <span class="vibe-category mono">iOS Utility</span>
           </div>
           <p class="vibe-desc">
-            Infant feeding routine tracker with iOS 17 Interactive Widgets and Live Activities. One-tap nursing timers, formula logs, and daily rhythm insights.
+            Newborn Feeding Tracker
           </p>
           <div class="vibe-tags mono">
-            <span class="vibe-tag">WidgetKit</span>
-            <span class="vibe-tag">Live Activity</span>
             <span class="vibe-tag">Swift</span>
           </div>
           <div class="vibe-footer">
             <a href="https://hoibaby.com" target="_blank" rel="noopener" class="vibe-btn mono">hoibaby.com ↗</a>
-            <span class="vibe-status mono">Interactive Widgets</span>
           </div>
         </div>
       </div>
@@ -1866,13 +1834,13 @@ full_html = f"""<!DOCTYPE html>
       <section class="main-col">
         <div class="stream-head mono">
           <span>Publications Stream</span>
-          <span class="stream-total">{len(papers)} works · 32 papers · 18 patents</span>
+          <span class="stream-total">{len(papers)} papers</span>
         </div>
         
         <!-- Filter Controls -->
         <div class="filter-bar">
           <div class="filter-header">
-            <span class="filter-count mono" id="filter-count">Showing all {len(papers)} publications &amp; patents</span>
+            <span class="filter-count mono" id="filter-count">Showing all {len(papers)} publications</span>
           </div>
 
           <div class="search-wrapper">
@@ -1890,15 +1858,13 @@ full_html = f"""<!DOCTYPE html>
             <button class="filter-btn" data-filter="privacy" onclick="setFilter('privacy', this)">Privacy & Federated ({cat_counts.get('privacy', 0)})</button>
             <button class="filter-btn" data-filter="recsys" onclick="setFilter('recsys', this)">Recommender Systems ({cat_counts.get('recsys', 0)})</button>
             <button class="filter-btn" data-filter="graph" onclick="setFilter('graph', this)">Graph Learning ({cat_counts.get('graph', 0)})</button>
-            <button class="filter-btn" data-filter="llm" onclick="setFilter('llm', this)">LLMs & Alignment ({cat_counts.get('llm', 0)})</button>
-            <button class="filter-btn" data-filter="patent" onclick="setFilter('patent', this)">Patents ({len(patent_cards_html)})</button>
+            <button class="filter-btn" data-filter="llm" onclick="setFilter('llm', this)">LLMs & Responsible AI ({cat_counts.get('llm', 0)})</button>
           </div>
         </div>
 
         <!-- Publications Stream -->
         <div class="pub-list" id="pub-container">
           {"".join(pub_cards_html)}
-          {"".join(patent_cards_html)}
         </div>
 
         <div id="no-results" class="mono" style="display: none; padding: 40px; text-align: center; color: var(--text-sub); background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md);">
@@ -2057,7 +2023,7 @@ full_html = f"""<!DOCTYPE html>
         if (currentSearch.length > 0 || currentFilter !== 'all') {{
           countEl.textContent = `Showing ${{visibleCount}} of ${{cards.length}} items`;
         }} else {{
-          countEl.textContent = `Showing all ${{cards.length}} publications & patents`;
+          countEl.textContent = `Showing all ${{cards.length}} publications`;
         }}
       }}
     }}
@@ -2075,8 +2041,11 @@ full_html = f"""<!DOCTYPE html>
       const bib = btn.getAttribute('data-bib');
       if (!bib) return;
 
-      const originalHtml = btn.innerHTML;
-      navigator.clipboard.writeText(bib).then(() => {{
+      if (!btn.dataset.label) btn.dataset.label = btn.innerHTML;
+      const write = navigator.clipboard
+        ? navigator.clipboard.writeText(bib)
+        : Promise.reject(new Error('Clipboard API unavailable'));
+      write.then(() => {{
         btn.innerHTML = '<svg class="bib-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Copied!</span>';
         btn.classList.add('copied');
 
@@ -2087,12 +2056,14 @@ full_html = f"""<!DOCTYPE html>
             toast.classList.remove('show');
           }}, 2200);
         }}
-        setTimeout(() => {{
-          btn.innerHTML = originalHtml;
+        clearTimeout(btn.copyTimer);
+        btn.copyTimer = setTimeout(() => {{
+          btn.innerHTML = btn.dataset.label;
           btn.classList.remove('copied');
         }}, 1800);
       }}).catch(err => {{
         console.error('Clipboard copy failed:', err);
+        window.prompt('Copy this citation:', bib);
       }});
     }}
 
