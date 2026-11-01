@@ -27,7 +27,10 @@ def generate_overall_heatmap(svg_path="/Users/jiankai/Library/CloudStorage/Dropb
         full = os.path.join(base, d)
         if os.path.isdir(os.path.join(full, '.git')):
             try:
-                cmd = ['git', '-C', full, 'log', f'--since={start_date.strftime("%Y-%m-%d")}', '--format=%ad', '--date=short']
+                if d == 'homepage':
+                    cmd = ['git', '-C', full, 'log', f'--since={start_date.strftime("%Y-%m-%d")}', '--invert-grep', '--grep=^chore(activity)', '--format=%ad', '--date=short']
+                else:
+                    cmd = ['git', '-C', full, 'log', f'--since={start_date.strftime("%Y-%m-%d")}', '--format=%ad', '--date=short']
                 out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode('utf-8')
                 for dt in out.splitlines():
                     dt = dt.strip()
