@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · Jiankai Sun</title>
+  <meta name="description" content="The requested page could not be found. Return to Jiankai Sun's personal homepage, publications, or research.">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y64RCNPS3S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y64RCNPS3S');
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "89b3581f8f6643fca01d90ace429ef61"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --bg: #fafaf9;
+      --card-bg: #ffffff;
+      --text-main: #1c1917;
+      --text-muted: #57534e;
+      --text-sub: #78716c;
+      --border: #e7e5e4;
+      --border-focus: #cbd5e1;
+      --primary: #0369a1;
+      --primary-hover: #075985;
+      --primary-light: #f0f9ff;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .mono {
+      font-family: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+    .serif {
+      font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    }
+
+    /* Sticky Utility Header */
+    .utility-header {
+      background: rgba(250, 250, 249, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13.5px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      display: block;
+    }
+    .brand-title {
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+    .brand-chip {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-weight: 500;
+      color: var(--text-muted);
+      align-items: center;
+    }
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .status-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #475569;
+      font-weight: 500;
+      font-size: 12.5px;
+      flex-shrink: 0;
+    }
+    .loc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #0369a1;
+    }
+
+    /* 404 Main Container */
+    .notfound-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 24px;
+    }
+    .notfound-content {
+      max-width: 600px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .notfound-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .notfound-badge .badge-sep {
+      color: #7dd3fc;
+    }
+    .notfound-title {
+      font-size: 38px;
+      line-height: 1.25;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    .notfound-desc {
+      font-size: 15.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 520px;
+    }
+    .notfound-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      background: #0369a1;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover {
+      background: #075985;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .btn-secondary:hover {
+      border-color: #94a3b8;
+      color: #0369a1;
+      transform: translateY(-1px);
+    }
+    .notfound-quicklinks {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-sub);
+      width: 100%;
+    }
+    .quicklinks-list {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .quicklinks-list a {
+      color: #0369a1;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .quicklinks-list a:hover {
+      color: #075985;
+      text-decoration: underline;
+    }
+    .quicklinks-list .sep {
+      color: #cbd5e1;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      padding: 24px 28px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+    .footer-sep {
+      color: #cbd5e1;
+    }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    .footer-copy {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 880px) {
+      .status-location {
+        display: none;
+      }
+    }
+    @media (max-width: 768px) {
+      .utility-header {
+        padding: 0 16px;
+      }
+      .brand-chip {
+        display: none;
+      }
+      .nav-links {
+        gap: 14px;
+      }
+    }
+    @media (max-width: 640px) {
+      .utility-header {
+        padding: 0 12px;
+        height: 48px;
+        justify-content: center;
+      }
+      .nav-brand, .brand-chip, .status-location {
+        display: none;
+      }
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+        justify-content: center;
+        width: 100%;
+        white-space: nowrap;
+        padding: 0;
+      }
+      .notfound-title {
+        font-size: 28px;
+      }
+      .notfound-desc {
+        font-size: 14.5px;
+      }
+      .notfound-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Utility Header -->
+  <header class="utility-header">
+    <a href="/" class="nav-brand">
+      <img src="/assets/logo.svg" alt="" width="24" height="24" class="brand-logo">
+      <span class="brand-title">Jiankai Sun</span>
+      <span class="brand-chip mono">AI / Systems</span>
+    </a>
+    <nav class="nav-links mono">
+      <a href="/#about">About</a>
+      <a href="/#research">Research</a>
+      <a href="/#vibe-coding">Vibe Coding</a>
+      <a href="/#publications">Publications</a>
+      <a href="/#opensource">Activity</a>
+    </nav>
+    <div class="status-location mono">
+      <span class="loc-dot"></span>
+      <span>Seattle, WA · Pinterest MLE</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="notfound-container">
+    <div class="notfound-content">
+      <div class="notfound-badge mono">
+        <span class="error-code">404</span>
+        <span class="badge-sep">/</span>
+        <span>PAGE NOT FOUND</span>
+      </div>
+      <h1 class="serif notfound-title">Looking for something that isn't here.</h1>
+      <p class="notfound-desc">
+        The link you followed may be broken, or the page has been moved. Explore Jiankai Sun's research papers, open-source code, and AI systems projects from the links below.
+      </p>
+      <div class="notfound-actions mono">
+        <a href="/" class="btn-primary">Return to Homepage →</a>
+        <a href="/#publications" class="btn-secondary">Browse Publications</a>
+        <a href="/#opensource" class="btn-secondary">View Activity</a>
+      </div>
+      <div class="notfound-quicklinks">
+        <span class="quicklinks-label mono">Quick navigation:</span>
+        <div class="quicklinks-list mono">
+          <a href="/#research">Research Areas</a>
+          <span class="sep">·</span>
+          <a href="/#vibe-coding">Vibe Coding Projects</a>
+          <span class="sep">·</span>
+          <a href="https://scholar.google.com/citations?user=GQ6xw-oAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+          <span class="sep">·</span>
+          <a href="https://github.com/zhenv5" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-meta">
+        <span class="footer-title">Jiankai Sun</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-role">Machine Learning Engineer &amp; Researcher</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-loc">Seattle, WA</span>
+      </div>
+      <div class="footer-links mono">
+        <a href="/#about">About</a>
+        <a href="/#research">Research</a>
+        <a href="/#vibe-coding">Vibe Coding</a>
+        <a href="/#publications">Publications</a>
+        <a href="/#opensource">Activity</a>
+        <a href="https://scholar.google.com/citations?user=GQ6xw-oAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://github.com/zhenv5" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/jiankaisun/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:sun.cse.osu@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy mono">
+        © 2026 Jiankai Sun · Crafted with research &amp; engineering rigor
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
