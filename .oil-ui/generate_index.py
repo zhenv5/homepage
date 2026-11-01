@@ -118,7 +118,7 @@ def categorize(p):
         return "privacy"
     if any(k in title for k in ["code generation", "language model", "llm", "print debugging", "fairness"]):
         return "llm"
-    if any(k in title for k in ["graph", "embedding", "hierarchy", "routing", "atp", "transitivity"]):
+    if any(k in title for k in ["graph", "embedding", "hierarch", "routing", "atp", "transitivity", "qdee"]):
         return "graph"
     if any(k in title for k in ["recommend", "retrieval", "ranking", "subsampling", "collaborative filtering", "ads ranking"]):
         return "recsys"
@@ -443,6 +443,9 @@ full_html = f"""<!DOCTYPE html>
       --radius-lg: 14px;
     }}
 
+    html {{
+      scroll-padding-top: 64px;
+    }}
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background-color: var(--bg);
@@ -724,6 +727,10 @@ full_html = f"""<!DOCTYPE html>
       position: relative;
       height: 100%;
     }}
+    .pillar-card:focus-visible {{
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }}
     .pillar-card:hover {{
       border-color: #0369a1;
       box-shadow: 0 4px 16px rgba(3, 105, 161, 0.08);
@@ -874,6 +881,8 @@ full_html = f"""<!DOCTYPE html>
       gap: 24px;
       position: sticky;
       top: 68px;
+      grid-column: 1;
+      grid-row: 1;
     }}
     .sidebar-block {{
       display: flex;
@@ -983,6 +992,7 @@ full_html = f"""<!DOCTYPE html>
       text-decoration: none;
       color: var(--text-main);
       transition: all 0.15s;
+      min-width: 0;
     }}
     .repo-card:hover {{
       border-color: #cbd5e1;
@@ -995,6 +1005,12 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+    }}
+    .repo-name span:first-child {{
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      min-width: 0;
     }}
     .repo-desc {{
       font-size: 12.5px;
@@ -1007,6 +1023,10 @@ full_html = f"""<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       gap: 18px;
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+      outline: none;
     }}
     .filter-bar {{
       display: flex;
@@ -1472,11 +1492,31 @@ full_html = f"""<!DOCTYPE html>
       .sidebar-col {{
         position: static;
       }}
+      .sidebar-col, .main-col {{
+        grid-column: auto;
+        grid-row: auto;
+      }}
       .metrics-row {{
         gap: 16px;
       }}
       .metric-divider {{
         display: none;
+      }}
+    }}
+    @media (max-width: 880px) {{
+      .status-location {{
+        display: none;
+      }}
+    }}
+    @media (max-width: 768px) {{
+      .utility-header {{
+        padding: 0 16px;
+      }}
+      .brand-chip {{
+        display: none;
+      }}
+      .nav-links {{
+        gap: 14px;
       }}
     }}
     @media (max-width: 640px) {{
@@ -1666,7 +1706,7 @@ full_html = f"""<!DOCTYPE html>
 
       <div class="pillars-grid">
         <!-- Pillar 1 -->
-        <div class="pillar-card" onclick="filterByPillar('privacy')">
+        <a href="#publications" class="pillar-card" onclick="filterByPillar('privacy'); return false;">
           <div class="pillar-index mono">
             <span>01 / PRIVACY</span>
             <span class="pillar-count">{cat_counts.get('privacy', 0)} papers</span>
@@ -1676,10 +1716,10 @@ full_html = f"""<!DOCTYPE html>
             Two-party split learning label protection, cross-silo differential privacy, data clean rooms, and vertical federated learning.
           </p>
           <div class="pillar-action mono">View papers →</div>
-        </div>
+        </a>
 
         <!-- Pillar 2 -->
-        <div class="pillar-card" onclick="filterByPillar('recsys')">
+        <a href="#publications" class="pillar-card" onclick="filterByPillar('recsys'); return false;">
           <div class="pillar-index mono">
             <span>02 / RECSYS</span>
             <span class="pillar-count">{cat_counts.get('recsys', 0)} papers</span>
@@ -1689,10 +1729,10 @@ full_html = f"""<!DOCTYPE html>
             Decoupled representation learning for ads ranking, end-to-end retrieval, machine unlearning, and diversified item ranking.
           </p>
           <div class="pillar-action mono">View papers →</div>
-        </div>
+        </a>
 
         <!-- Pillar 3 -->
-        <div class="pillar-card" onclick="filterByPillar('graph')">
+        <a href="#publications" class="pillar-card" onclick="filterByPillar('graph'); return false;">
           <div class="pillar-index mono">
             <span>03 / GRAPHS</span>
             <span class="pillar-count">{cat_counts.get('graph', 0)} papers</span>
@@ -1702,10 +1742,10 @@ full_html = f"""<!DOCTYPE html>
             Directed graph embedding with asymmetric transitivity preservation, cycle breaking in noisy hierarchies, and cold-start routing.
           </p>
           <div class="pillar-action mono">View papers →</div>
-        </div>
+        </a>
 
         <!-- Pillar 4 -->
-        <div class="pillar-card" onclick="filterByPillar('llm')">
+        <a href="#publications" class="pillar-card" onclick="filterByPillar('llm'); return false;">
           <div class="pillar-index mono">
             <span>04 / LLMS</span>
             <span class="pillar-count">{cat_counts.get('llm', 0)} papers</span>
@@ -1715,7 +1755,7 @@ full_html = f"""<!DOCTYPE html>
             Improving LLM code generation through print debugging, proxy fairness with missing sensitive attributes, and self-refinement.
           </p>
           <div class="pillar-action mono">View papers →</div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -1787,51 +1827,10 @@ full_html = f"""<!DOCTYPE html>
     </section>
 
     <!-- Two-Column Grid: Left Sidebar & Right Publications -->
-    <div class="layout-grid" id="publications">
+    <div class="layout-grid">
       
-      <!-- Left Sidebar: Overall Activity & Open Source -->
-      <aside class="sidebar-col" id="opensource">
-        
-        <!-- Live Overall Contribution Heatmap -->
-        <div class="sidebar-block">
-          <div class="sidebar-head mono">
-            <span>Overall Activity</span>
-            <a href="https://github.com/zhenv5" target="_blank" rel="noopener">@zhenv5 ↗</a>
-          </div>
-          
-          <div class="heatmap-container">
-            <div class="heatmap-meta mono">
-              <span>Public & Private Repos</span>
-              <span style="color: #0369a1; font-weight: 600;">{overall_commit_count:,} Commits</span>
-            </div>
-            
-            <div class="heatmap-svg-wrap">
-              {heatmap_svg}
-            </div>
-            
-            <div class="heatmap-legend mono">
-              <span>Less</span>
-              <div class="legend-squares">
-                <span class="legend-sq" style="background: #ebedf0;"></span>
-                <span class="legend-sq" style="background: #9be9a8;"></span>
-                <span class="legend-sq" style="background: #40c463;"></span>
-                <span class="legend-sq" style="background: #30a14e;"></span>
-                <span class="legend-sq" style="background: #216e39;"></span>
-              </div>
-              <span>More</span>
-            </div>
-          </div>
-
-          <!-- Featured Open Source Repos -->
-          <div class="repo-items">
-            {repo_cards_html}
-          </div>
-        </div>
-
-      </aside>
-
       <!-- Right Column: Searchable, Filterable Publications Stream -->
-      <section class="main-col">
+      <section class="main-col" id="publications" tabindex="-1">
         <div class="stream-head mono">
           <span>Publications Stream</span>
           <span class="stream-total">{len(papers)} papers</span>
@@ -1873,6 +1872,47 @@ full_html = f"""<!DOCTYPE html>
         </div>
 
       </section>
+
+      <!-- Left Sidebar: Overall Activity & Open Source -->
+      <aside class="sidebar-col" id="opensource">
+        
+        <!-- Live Overall Contribution Heatmap -->
+        <div class="sidebar-block">
+          <div class="sidebar-head mono">
+            <span>Overall Activity</span>
+            <a href="https://github.com/zhenv5" target="_blank" rel="noopener">@zhenv5 ↗</a>
+          </div>
+          
+          <div class="heatmap-container">
+            <div class="heatmap-meta mono">
+              <span>Public & Private Repos</span>
+              <span style="color: #0369a1; font-weight: 600;">{overall_commit_count:,} Commits</span>
+            </div>
+            
+            <div class="heatmap-svg-wrap">
+              {heatmap_svg}
+            </div>
+            
+            <div class="heatmap-legend mono">
+              <span>Less</span>
+              <div class="legend-squares">
+                <span class="legend-sq" style="background: #ebedf0;"></span>
+                <span class="legend-sq" style="background: #9be9a8;"></span>
+                <span class="legend-sq" style="background: #40c463;"></span>
+                <span class="legend-sq" style="background: #30a14e;"></span>
+                <span class="legend-sq" style="background: #216e39;"></span>
+              </div>
+              <span>More</span>
+            </div>
+          </div>
+
+          <!-- Featured Open Source Repos -->
+          <div class="repo-items">
+            {repo_cards_html}
+          </div>
+        </div>
+
+      </aside>
     </div>
 
   </main>
@@ -1928,7 +1968,9 @@ full_html = f"""<!DOCTYPE html>
       }}
       const pubSection = document.getElementById('publications');
       if (pubSection) {{
-        pubSection.scrollIntoView({{ behavior: 'smooth' }});
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        pubSection.focus({{ preventScroll: true }});
+        pubSection.scrollIntoView({{ behavior: reduceMotion ? 'auto' : 'smooth' }});
       }}
     }}
 
