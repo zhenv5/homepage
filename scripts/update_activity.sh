@@ -7,6 +7,10 @@ export HOME="/Users/jiankai"
 REPO_DIR="/Users/jiankai/Library/CloudStorage/Dropbox/Codes/homepage"
 cd "$REPO_DIR"
 
+# Log every run to logs/activity.log (git-ignored) while still printing to the terminal
+mkdir -p logs
+exec > >(tee -a logs/activity.log) 2>&1
+
 LOG_TAG="[$(date '+%Y-%m-%d %H:%M:%S')]"
 echo "$LOG_TAG [activity-sync] Checking for activity updates..."
 

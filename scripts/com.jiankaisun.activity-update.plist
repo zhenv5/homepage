@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jiankaisun.activity-update</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/jiankai/Library/CloudStorage/Dropbox/Codes/homepage/scripts/update_activity.sh</string>
+    </array>
+    <!-- Every day at 13:00; if the Mac was asleep, launchd runs it on wake -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>13</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/jiankai/Library/Logs/homepage-activity.launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jiankai/Library/Logs/homepage-activity.launchd.log</string>
+</dict>
+</plist>
